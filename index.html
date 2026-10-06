@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Provit</title>
 <meta name="description" content="Provit – Wochenplaner mit Rezepten, Preisvergleich und Einkaufsliste">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
 <meta name="theme-color" content="#EEF2EA">
+<meta name="theme-color" content="#EEF2EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#EEF2EA" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -241,6 +245,7 @@ body {
 @media (max-width: 479px) {
   html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
   body { min-height: 0; display: block; background: var(--bg); }
+  html { background: var(--bg); }
   .app-shell { position: fixed; inset: 0; min-height: 0; height: auto; max-width: none; }
 }
 .sheet-header { padding: 0 20px 12px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
@@ -897,6 +902,11 @@ input[type=range].psl-range::-moz-range-thumb {
 
 
 
+
+/* iPhone färbt die Statusleiste nach dem, was oben am Bildschirmrand liegt: geschlossene Abdunklung ganz ausblenden */
+.overlay { visibility: hidden; transition: opacity .22s, visibility 0s linear .3s; }
+.overlay.open { visibility: visible; transition: opacity .22s, visibility 0s; }
+.overlay:not(.open) { background: transparent; }
 /* ── Rezept anpassen ── */
 .ve-lead { font-size: 13px; color: var(--text-2); line-height: 1.55; margin: 2px 0 12px; }
 .ve-row .ce-name { display: flex; flex-direction: column; min-width: 0; }
@@ -3050,6 +3060,7 @@ function _mergeState(p) {
         bioMeat: !!p.bioMeat,
         a2hsDone: !!p.a2hsDone,
         tour: (p.tour && typeof p.tour === 'object') ? p.tour : null,
+        sparRecent: Array.isArray(p.sparRecent) ? p.sparRecent.filter(x => Array.isArray(x) && typeof x[0] === 'string').slice(-160) : [],
         edits: (p.edits && typeof p.edits === 'object') ? Object.fromEntries(Object.entries(p.edits).filter(([k, v]) => v && Array.isArray(v.rows) && BUILTIN.some(b => b.id === k))) : {},
         allergies: Array.isArray(p.allergies) ? p.allergies.filter(k => typeof k === 'string') : [],
         history: Array.isArray(p.history) ? p.history.filter(e => e && e.week && isFinite(e.planned)) : [],
@@ -5284,7 +5295,10 @@ function openSheet(html, opts={}) {
     sheet.focus({ preventScroll: true });
   }, 60);
 }
+// Statusleiste (iPhone) nach dem Schließen neu einfärben lassen
+function _retint() { try { const h = document.documentElement; setTimeout(() => { h.style.backgroundColor = '#EEF2EB'; requestAnimationFrame(() => requestAnimationFrame(() => { h.style.backgroundColor = ''; })); }, 320); } catch (e) {} }
 function closeSheet() {
+  _retint();
   const overlay = document.getElementById('overlay');
   const wasOpen = overlay.classList.contains('open');
   overlay.classList.remove('open'); sheetMode = null; pickDay = null;
@@ -5855,11 +5869,12 @@ function _scoreWithFactors(recs, factors) {
   const totals = _planTotals(recs, factors);
   // Waste = leftover package content in euros (after using up pantry stock first)
   const effTotals = _hasPantry() ? _applyPantryToTotals(totals) : totals;
-  let waste = 0;
+  let waste = 0, buy = 0;
   for (const [id, tot] of Object.entries(effTotals)) {
     if (!P[id]) continue;
     const base = pkgBaseAmt(P[id].n);
     const pkgs = Math.ceil(tot / base);
+    buy += pkgs * P[id]['aldi'];
     const left = (P[id]['aldi'] / base) * (pkgs * base - tot);
     // Haltbare Reste nur leicht gewichten: sie kosten jetzt Geld, werden aber später verbraucht
     waste += LONG_LIFE.has(id) ? left * 0.25 : left;
@@ -5883,7 +5898,7 @@ function _scoreWithFactors(recs, factors) {
   const reuse = recs.filter(r => recentIds.has(r.id)).length;
   pen += reuse * 8.0;
   pen += _varietyPenalty(recs);
-  return waste + pen;
+  return waste + pen + buy * (_rotPen ? _MIX.cost : 0);
 }
 
 // Recipe-selection score uses each recipe's own target factor
@@ -5894,7 +5909,7 @@ function _planScore(recs) {
   // Süße Hauptgerichte höchstens einmal pro Woche, nicht nur Fitness-Gerichte
   if (ns) adj += ns > 1 ? (ns - 1) * 4 : 0.4;
   if (nf > Math.ceil(recs.length / 2)) adj += (nf - Math.ceil(recs.length / 2)) * 0.8;
-  return _scoreWithFactors(recs, _targetFactors(recs)) + adj;
+  return _scoreWithFactors(recs, _targetFactors(recs)) + adj + _mixPenalty(recs);
 }
 
 // After recipe selection: fine-tune each recipe's factor by at most one step (±¼ Portion)
@@ -5953,6 +5968,49 @@ function _planRealCost(recs, factors, usePantry=true, weights) {
 }
 
 let _recentIdsCache = null;
+// ── Abwechslung: Gedächtnis über Sitzungen hinweg + etwas Zufall pro Vorschlag ──
+// S.sparRecent: [[rezeptId, zeitstempel, gewicht]] – gezeigt = 1, übernommen = 2; zählt mit Halbwertszeit 7 Tage
+let _rotPen = null, _jit = null;
+// abgestimmt: deutlich mehr Abwechslung bei fast gleichem Einkaufspreis
+const _MIX = { cost: 0.25, cap: 3, mult: 1, jit: 1, ing: 1.2, meat: 1.5, meatShare: 0.3, kue: 2 };
+function _sparRemember(ids, w) {
+  const now = Date.now();
+  S.sparRecent = (S.sparRecent || []).concat(ids.map(id => [id, now, w])).slice(-160);
+}
+function _buildRotation() {
+  const now = Date.now(), pen = {};
+  (S.sparRecent || []).forEach(([id, t, w]) => {
+    const age = Math.max(0, now - t) / 864e5;
+    pen[id] = (pen[id] || 0) + (w || 1) * Math.pow(0.5, age / 7);
+  });
+  for (const k in pen) pen[k] = Math.min(_MIX.cap, pen[k] * _MIX.mult);
+  _rotPen = pen; _jit = {};
+}
+function _jitter(id) { if (!_jit) return 0; if (_jit[id] === undefined) _jit[id] = (Math.random() - 0.5) * _MIX.jit; return _jit[id]; }
+const _SHARED_OK = new Set(['kartoffeln','tomaten','passierte_tomaten','paprika','moehren','reis','parboiled','pasta','eier','sahne','milch','mehl','joghurt','gurke','kirschtomaten','tomatenfr','spinat','zucchini','champignons','petersilie','kraeuter','ingwer','chili','fruehlingszwiebeln','salat','honig','senf','schmand','reibekaese']);
+const _MEATFISH = new Set(['rind','fisch','haehnchen','pute','hack','schwein']);
+const _keyIngCache = {};
+function _keyIngs(r) { return _keyIngCache[r.id] || (_keyIngCache[r.id] = [...new Set(r.ing.map(x => x[0]))].filter(i => !_BASIC_ING.has(i))); }
+function _mixPenalty(recs) {
+  const n = recs.length; if (n < 3) return 0;
+  let pen = 0;
+  // Küchen: nicht mehr als etwa ein Drittel aus derselben Küche
+  const kc = {}, lim = Math.max(2, Math.ceil(n / 3));
+  recs.forEach(r => { const k = r.kueche || 'international'; kc[k] = (kc[k] || 0) + 1; });
+  for (const k in kc) if (kc[k] > lim) pen += (kc[k] - lim) * _MIX.kue;
+  // prägende Zutaten (Mozzarella, Chorizo, Feta, Gnocchi …) höchstens zweimal, Grundzutaten höchstens dreimal
+  const ic = {};
+  recs.forEach(r => { for (const i of _keyIngs(r)) ic[i] = (ic[i] || 0) + 1; });
+  for (const i in ic) { const l = _SHARED_OK.has(i) ? 3 : 2; if (ic[i] > l) pen += (ic[i] - l) * _MIX.ing; }
+  // Wer Fleisch isst, bekommt auch Fleisch/Fisch – nicht nur Käse- und Bohnengerichte
+  if ((S.diet || 'all') === 'all') {
+    const want = Math.round(n * _MIX.meatShare), have = recs.filter(r => _MEATFISH.has(_recipeTags(r).prot)).length;
+    if (have < want) pen += (want - have) * _MIX.meat;
+  }
+  // Rotation + Zufall
+  if (_rotPen) recs.forEach(r => { pen += (_rotPen[r.id] || 0) + _jitter(r.id); });
+  return pen;
+}
 // Meal Prep: 4 Gerichte, die ersten drei werden für zwei Tage gekocht (Mo+Di, Mi+Do, Fr+Sa, So)
 const PREP_WEIGHTS = [2, 2, 2, 1];
 const PREP_DAYMAP  = [0, 0, 1, 1, 2, 2, 3];
@@ -5976,6 +6034,7 @@ function _defaultLayout(n) {
 
 function buildSparsamPlan() {
   _recentIdsCache = new Set([..._sparHistory[0]||[], ..._sparHistory[1]||[]]);
+  _buildRotation();
   const layout = _sparLayout();
   _curLayout = layout;
   _curWeights = layout.weights;
@@ -5983,7 +6042,7 @@ function buildSparsamPlan() {
     const res = _buildSparsamPlan(layout.groups.length);
     if (res) { res.weights = layout.weights ? layout.weights.slice() : null; res.layout = layout; }
     return res;
-  } finally { _recentIdsCache = null; _curWeights = null; _curLayout = null; }
+  } finally { _recentIdsCache = null; _curWeights = null; _curLayout = null; _rotPen = null; _jit = null; }
 }
 function _buildSparsamPlan(nDishes) {
   nDishes = nDishes || 7;
@@ -6272,6 +6331,7 @@ function openSparplan() {
   if (result) {
     _sparHistory.unshift(new Set(result.recs.map(r => r.id)));
     if (_sparHistory.length > 2) _sparHistory.length = 2;
+    _sparRemember(result.recs.map(r => r.id), 1); save();
   }
 
   if (!result) {
@@ -6429,6 +6489,7 @@ function applySparplan() {
     S.plan[d] = recs[i].id; S.portions[d] = factors[i] || 1;
     if (k > 0) S.leftover[d] = true; else delete S.leftover[d];
   }));
+  _sparRemember(recs.map(r => r.id), 2);
   save(); closeSheet(); renderPlan();   // save() teilt Vorräte automatisch dem neuen Plan zu
   const n = layout.days.length;
   toast(n === 7 ? 'Sparplan wurde angewendet ✓' : `Sparplan für ${layout.labels.length === 1 && n === 1 ? DAY_NAMES[layout.days[0]] : DAYS[layout.days[0]] + '–' + DAYS[layout.days[n - 1]]} angewendet ✓`);
@@ -7592,7 +7653,7 @@ function renderSettings() {
         </div>
       </div>
     </div>
-    <div class="set-version">provit · Version 69 · Preise Stand ${PRICE_STAND}<br><span style="font-size:10px">Ortsnamen: GeoNames (CC BY 4.0)</span>${PROVIT_STANDALONE ? `<div class="set-legal"><a href="info.html">Über Provit</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>` : ''}</div>`;
+    <div class="set-version">provit · Version 71 · Preise Stand ${PRICE_STAND}<br><span style="font-size:10px">Ortsnamen: GeoNames (CC BY 4.0)</span>${PROVIT_STANDALONE ? `<div class="set-legal"><a href="info.html">Über Provit</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>` : ''}</div>`;
   document.getElementById('settings-body').innerHTML = h;
 }
 
@@ -7904,7 +7965,7 @@ function _editedRecipe(o, e) {
   return { ing, steps, hl, sum, name: e.name || autoName };
 }
 function _clearRecipeCaches(id) {
-  delete _extrasCache[id]; delete _allergenCache[id]; delete _tagCache[id];
+  delete _extrasCache[id]; delete _allergenCache[id]; delete _tagCache[id]; delete _keyIngCache[id];
   Object.keys(_simCache).forEach(k => { if (k.split('|').includes(id)) delete _simCache[k]; });
 }
 function _applyEdit(r) {
@@ -8143,7 +8204,7 @@ function restoreRecipe(rid) {
 // ══════════════════════════════════════════
 // FEEDBACK per E-Mail (nur in den Einstellungen)
 // ══════════════════════════════════════════
-const PROVIT_VERSION = 69;
+const PROVIT_VERSION = 71;
 const FEEDBACK_MAIL = 'fxnn.koch@gmail.com';
 const _FB_CATS = ['Fehler', 'Idee', 'Rezept', 'Preise', 'Sonstiges'];
 let _fbCat = 'Fehler', _fbText = '';
@@ -8398,6 +8459,7 @@ function _tourEnd(mark) {
   const wasTour = !_tour.tip;
   _tour = null;
   const L = document.getElementById('tour'); if (L) L.hidden = true;
+  _retint();
   if (wasTour && mark) setTimeout(() => _tipCheckPlan(), 600);
 }
 document.addEventListener('keydown', e => {
