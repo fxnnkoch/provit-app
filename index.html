@@ -17,8 +17,6 @@
 </head>
 <body>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
-
 :root {
   --bg: #EEF2EA; --surface: #FFFFFF; --border: #DCE4D8;
   --text: #16201A; --text-2: #56615A;
@@ -883,6 +881,8 @@ input[type=range].psl-range::-moz-range-thumb {
 .ms-row { display: flex; flex-direction: column; gap: 2px; background: var(--green-bg); border-radius: 14px; padding: 11px 13px; margin-bottom: 6px; }
 .ms-row b { font-size: 14px; color: var(--green); }
 .ms-row span { font-size: 12.5px; color: var(--text); line-height: 1.45; }
+.set-legal { margin-top: 8px; font-size: 12px; }
+.set-legal a { color: var(--green); font-weight: 600; text-decoration: none; }
 .no-ai .ai-only { display: none !important; }
 .ob-restore { display:block; width:100%; margin-top:12px; background:none; border:none; font-family:inherit; font-size:13px; font-weight:600; color:var(--green); cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
 .inapp-hint { font-size:12.5px; line-height:1.5; color:var(--text); background:#FFF4DE; border:1.5px solid #F0C877; border-radius:14px; padding:11px 12px; margin:0 0 14px; text-align:left; }
@@ -7494,7 +7494,7 @@ function renderSettings() {
         </div>
       </div>
     </div>
-    <div class="set-version">provit · Version 64 · Preise Stand ${PRICE_STAND}<br><span style="font-size:10px">Ortsnamen: GeoNames (CC BY 4.0)</span></div>`;
+    <div class="set-version">provit · Version 65 · Preise Stand ${PRICE_STAND}<br><span style="font-size:10px">Ortsnamen: GeoNames (CC BY 4.0)</span>${PROVIT_STANDALONE ? `<div class="set-legal"><a href="info.html">Über Provit</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>` : ''}</div>`;
   document.getElementById('settings-body').innerHTML = h;
 }
 

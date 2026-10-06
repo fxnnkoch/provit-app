@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Provit – Der Wochenplan, bei dem nichts übrig bleibt</title>
+<meta name="description" content="Provit plant deine Woche aus 500 Rezepten so, dass Packungen aufgebraucht werden – mit Supermarktpreisen von Aldi, Lidl, Rewe, Edeka und Penny. Kostenlos, ohne Anmeldung.">
+<meta property="og:title" content="Provit – Der Wochenplan, bei dem nichts übrig bleibt">
+<meta property="og:description" content="500 Rezepte, echte Supermarktpreise, Einkaufsliste und Restefrei-Check. Kostenlos, ohne Anmeldung.">
+<meta property="og:image" content="icon-512-v2.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#EEF2EA">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192-v2.png">
+<link rel="apple-touch-icon" href="apple-touch-icon-v2.png">
+<style>
+:root {
+  --bg: #EEF2EA; --paper: #F7F9F4; --surface: #FFFFFF; --line: #DCE4D8;
+  --ink: #16201A; --ink-2: #56615A; --green: #1F5A3A; --green-2: #2E7A50; --leaf: #4DAA78; --green-bg: #E1ECDF;
+  --warm: #B3412E; --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; padding-top: env(safe-area-inset-top, 0px); }
+a { color: var(--green); }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1060px; margin: 0 auto; padding-inline: 20px; }
+/* Kopf */
+.top { display: flex; align-items: center; justify-content: space-between; padding-block: 18px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand img { width: 36px; height: 36px; border-radius: 9px; }
+.word { font-family: var(--serif); font-style: italic; font-size: 26px; letter-spacing: -.01em; }
+.word span { color: var(--green); }
+.top .btn-sm { font-size: 14px; font-weight: 700; color: #fff; background: var(--green); padding: 9px 16px; border-radius: 999px; text-decoration: none; }
+/* Hero */
+.hero { display: grid; grid-template-columns: 1fr; gap: 28px; padding-block: 20px 44px; align-items: center; }
+.kicker { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--green-2); margin-bottom: 12px; }
+h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 6vw, 56px); line-height: 1.06; letter-spacing: -.02em; text-wrap: balance; }
+h1 em { font-style: italic; color: var(--green); }
+.lead { font-size: 18px; color: var(--ink-2); margin-top: 16px; max-width: 34em; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; padding: 14px 22px; border-radius: 14px; text-decoration: none; }
+.btn.primary { background: var(--green); color: #fff; box-shadow: 0 6px 18px rgba(31,90,58,.25); }
+.btn.ghost { background: var(--surface); color: var(--green); border: 1.5px solid var(--line); }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; font-size: 14px; color: var(--ink-2); }
+.facts b { color: var(--ink); }
+.phone { justify-self: center; width: min(300px, 78vw); border-radius: 34px; padding: 10px; background: #1B2A21; box-shadow: 0 30px 60px rgba(22,32,26,.22); position: relative; }
+.phone img { border-radius: 26px; }
+.badge { position: absolute; right: -14px; top: 38%; background: var(--surface); border-radius: 14px; padding: 10px 13px; box-shadow: 0 10px 26px rgba(22,32,26,.16); font-size: 13px; line-height: 1.35; max-width: 190px; }
+.badge b { display: block; font-size: 16px; color: var(--green); }
+/* Abschnitte */
+section { padding-block: 44px; }
+.sec-k { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--green-2); margin-bottom: 8px; }
+h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 4vw, 36px); line-height: 1.15; letter-spacing: -.01em; text-wrap: balance; max-width: 22em; }
+.sub { color: var(--ink-2); margin-top: 10px; max-width: 40em; }
+.cards { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 26px; }
+.card { background: var(--surface); border-radius: 20px; padding: 22px; }
+.card .ico { width: 42px; height: 42px; border-radius: 12px; background: var(--green-bg); display: grid; place-items: center; font-size: 21px; margin-bottom: 12px; }
+.card h3 { font-size: 18px; line-height: 1.3; margin-bottom: 6px; }
+.card p { color: var(--ink-2); font-size: 15px; }
+.card.feature { background: var(--green); color: #fff; }
+.card.feature p { color: #D9E8DC; }
+.card.feature .ico { background: rgba(255,255,255,.14); }
+.card.feature .num { font-family: var(--serif); font-size: 40px; line-height: 1; margin: 14px 0 4px; }
+.card.feature small { color: #BFD6C4; font-size: 12px; }
+/* Bildschirme */
+.shots { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 26px 20px 10px; margin-inline: -20px; scrollbar-width: none; }
+.shots::-webkit-scrollbar { display: none; }
+.shot { flex: 0 0 auto; width: 220px; scroll-snap-align: start; }
+.shot img { border-radius: 22px; border: 6px solid #1B2A21; background: #1B2A21; }
+.shot p { font-size: 14px; color: var(--ink-2); margin-top: 10px; line-height: 1.45; }
+.shot p b { color: var(--ink); display: block; }
+/* Schritte */
+.steps { list-style: none; counter-reset: s; display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+.steps li { counter-increment: s; background: var(--surface); border-radius: 18px; padding: 18px 18px 18px 64px; position: relative; }
+.steps li::before { content: counter(s); position: absolute; left: 18px; top: 18px; width: 32px; height: 32px; border-radius: 50%; background: var(--green); color: #fff; font-weight: 700; display: grid; place-items: center; }
+.steps b { display: block; margin-bottom: 2px; }
+.steps span { color: var(--ink-2); font-size: 15px; }
+/* Installieren */
+.install { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 24px; }
+.install .card ol { padding-left: 20px; color: var(--ink-2); font-size: 15px; }
+.install .card li + li { margin-top: 4px; }
+.install .card li b { color: var(--ink); }
+.note { margin-top: 14px; font-size: 14px; color: var(--ink-2); background: #FFF6E5; border: 1.5px solid #F2D9A6; border-radius: 14px; padding: 12px 14px; }
+/* Datenschutz-Band */
+.privacy { background: var(--surface); border-radius: 24px; padding: 26px; display: grid; gap: 10px; }
+.privacy ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.privacy li { background: var(--green-bg); color: var(--green); font-weight: 700; font-size: 14px; padding: 7px 12px; border-radius: 999px; }
+/* FAQ */
+details { background: var(--surface); border-radius: 16px; padding: 16px 18px; margin-top: 10px; }
+summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--green); font-size: 20px; line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { color: var(--ink-2); margin-top: 8px; font-size: 15px; }
+/* Schluss */
+.final { text-align: center; padding-block: 56px; }
+.final h2 { margin-inline: auto; }
+.final .cta { justify-content: center; }
+footer { border-top: 1px solid var(--line); padding-block: 22px calc(22px + env(safe-area-inset-bottom, 0px)); font-size: 13px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: space-between; }
+footer nav { display: flex; gap: 16px; }
+footer a { color: var(--ink-2); }
+@media (min-width: 760px) {
+  .hero { grid-template-columns: 1.15fr .85fr; padding-block: 36px 64px; }
+  .cards { grid-template-columns: repeat(3, 1fr); }
+  .steps { grid-template-columns: repeat(3, 1fr); }
+  .install { grid-template-columns: 1fr 1fr; }
+  .shots { padding-inline: 0; margin-inline: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="info.html" aria-label="Provit Startseite"><img src="icon-192-v2.png" alt=""><span class="word"><span>pro</span>vit</span></a>
+    <a class="btn-sm" href="./">App öffnen</a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <div class="kicker">Kostenlos · ohne Anmeldung · iPhone &amp; Android</div>
+        <h1>Der Wochenplan, bei dem <em>nichts übrig bleibt.</em></h1>
+        <p class="lead">Provit plant deine Woche aus 500 Rezepten so, dass sich Zutaten überschneiden und Packungen aufgebraucht werden – mit Supermarktpreisen von Aldi, Lidl, Rewe, Edeka und Penny.</p>
+        <div class="cta">
+          <a class="btn primary" href="./">Provit öffnen</a>
+          <a class="btn ghost" href="#installieren">Auf den Home-Bildschirm</a>
+        </div>
+        <div class="facts"><span><b>500</b> Rezepte</span><span><b>203</b> Zutaten mit Preisen</span><span><b>5</b> Supermärkte</span><span><b>0</b> Werbung</span></div>
+      </div>
+      <div class="phone">
+        <img src="screen-woche.webp" alt="Provit-Wochenansicht mit Budget-Ring und sieben geplanten Gerichten" width="600" height="1299">
+        <div class="badge"><b>24,48 €</b>für 7 Abendessen in der Beispielwoche</div>
+      </div>
+    </div>
+
+    <section aria-labelledby="warum">
+      <div class="sec-k">Warum Provit</div>
+      <h2 id="warum">Andere Apps zeigen Angebote. Provit plant so, dass du nichts wegwirfst.</h2>
+      <p class="sub">Halber Becher Sahne, angebrochener Brokkoli, die zweite Hälfte vom Hackfleisch – genau dort geht beim Kochen Geld verloren. Provit rechnet mit ganzen Packungen und wählt Gerichte, die Reste gegenseitig aufbrauchen.</p>
+      <div class="cards">
+        <article class="card feature">
+          <div class="ico" aria-hidden="true">♻️</div>
+          <h3>Restefrei planen</h3>
+          <p>Der Sparplan sucht Gerichte mit gemeinsamen Zutaten. Der Restefrei-Check zeigt, was nach dem Einkauf übrig bleibt – mit Rezeptideen dafür.</p>
+          <div class="num">2,02 €</div><small>frische Reste in der Beispielwoche</small>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">🛒</div>
+          <h3>Echte Supermarktpreise</h3>
+          <p>Reguläre Regalpreise von Aldi Süd, Lidl, Rewe, Edeka und Penny, monatlich aktualisiert und mit Herkunft gekennzeichnet. Dazu: alles in einem Laden oder günstigste Aufteilung.</p>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">🍲</div>
+          <h3>Für jeden Geschmack</h3>
+          <p>Rinderrouladen, Maultaschen, Sushi, Pasta oder Protein-Bowl. Filter für vegetarisch, vegan und Unverträglichkeiten – und deine eigenen Rezepte planst du einfach mit.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="ansehen">
+      <div class="sec-k">So sieht's aus</div>
+      <h2 id="ansehen">Planen, einkaufen, kochen – in einer App.</h2>
+      <div class="shots" tabindex="0" aria-label="Bildschirmfotos, seitlich wischen">
+        <figure class="shot"><img src="screen-sparplan.webp" alt="Sparplan mit Einkaufssumme, Zutatenzahl und frischen Resten" loading="lazy" width="600" height="1299"><p><b>Sparplan</b>Ein Tipp – und die Woche steht, passend zu Budget und Vorräten.</p></figure>
+        <figure class="shot"><img src="screen-reste.webp" alt="Restefrei-Check mit übrigen Zutaten und Rezeptideen" loading="lazy" width="600" height="1299"><p><b>Restefrei-Check</b>Siehst du sofort, was übrig bleibt – und was du daraus kochst.</p></figure>
+        <figure class="shot"><img src="screen-heute.webp" alt="Heute-Ansicht mit dem Gericht des Tages und Kochmodus" loading="lazy" width="600" height="1299"><p><b>Heute</b>Gericht des Tages mit Kochmodus, Schritt für Schritt.</p></figure>
+        <figure class="shot"><img src="screen-suche.webp" alt="Suche nach schnell Hähnchen unter 3 Euro" loading="lazy" width="600" height="1299"><p><b>Suche, die mitdenkt</b>„schnell Hähnchen unter 3 €“ oder „vegetarisch ohne Pilze“.</p></figure>
+        <figure class="shot"><img src="screen-preise.webp" alt="Preisvergleich der Supermärkte für den Wocheneinkauf" loading="lazy" width="600" height="1299"><p><b>Preisvergleich</b>Welcher Supermarkt ist für deinen Einkauf am günstigsten?</p></figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="ablauf">
+      <div class="sec-k">In drei Schritten</div>
+      <h2 id="ablauf">Von „Was koche ich?“ zur fertigen Einkaufsliste.</h2>
+      <ol class="steps">
+        <li><b>Kurz einrichten</b><span>Budget, Personen, Ernährungsweise – dauert eine Minute.</span></li>
+        <li><b>Sparplan tippen</b><span>Provit stellt die Woche zusammen. Gerichte tauschst du per Fingertipp.</span></li>
+        <li><b>Einkaufen &amp; kochen</b><span>Einkaufsliste nach Supermarkt, abhaken, Kochmodus starten.</span></li>
+      </ol>
+    </section>
+
+    <section id="installieren" aria-labelledby="inst">
+      <div class="sec-k">Installieren</div>
+      <h2 id="inst">In 20 Sekunden auf dem Home-Bildschirm.</h2>
+      <p class="sub">Provit läuft im Browser und lässt sich wie eine App ablegen – ohne App Store.</p>
+      <div class="install">
+        <div class="card"><h3>iPhone</h3><ol><li>Diese Seite in <b>Safari</b> öffnen</li><li>Unten auf <b>Teilen</b> tippen</li><li><b>Zum Home-Bildschirm</b> → <b>Hinzufügen</b></li><li>Provit ab jetzt über das Symbol öffnen</li></ol></div>
+        <div class="card"><h3>Android</h3><ol><li>Diese Seite in <b>Chrome</b> öffnen</li><li>Oben rechts auf <b>⋮</b> tippen</li><li><b>App installieren</b> bzw. <b>Zum Startbildschirm</b></li><li>Provit ab jetzt über das Symbol öffnen</li></ol></div>
+      </div>
+      <p class="note">Tipp: Links aus WhatsApp oder Instagram öffnen sich oft in deren eigenem Fenster. Dort gehen Daten beim Schließen verloren – öffne Provit deshalb immer in Safari bzw. Chrome.</p>
+    </section>
+
+    <section aria-labelledby="daten">
+      <div class="privacy">
+        <div class="sec-k">Deine Daten</div>
+        <h2 id="daten">Bleiben auf deinem Handy.</h2>
+        <p class="sub">Wochenplan, Vorräte und Einstellungen werden nur auf deinem Gerät gespeichert. Mit dem Sicherungscode nimmst du sie auf ein neues Handy mit.</p>
+        <ul><li>Kein Konto</li><li>Keine Werbung</li><li>Kein Tracking</li><li>Keine Cookies</li></ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="faq">
+      <div class="sec-k">Fragen</div>
+      <h2 id="faq">Gut zu wissen</h2>
+      <details><summary>Kostet Provit etwas?</summary><p>Nein. Provit ist kostenlos und ohne Werbung.</p></details>
+      <details><summary>Woher kommen die Preise?</summary><p>Aus den Websites der Händler, Pressemitteilungen und Preis-Meldungen auf Vergleichsseiten. Jeder Preis ist gekennzeichnet: geprüft, gemeldet oder geschätzt. Die Preise werden monatlich aktualisiert.</p></details>
+      <details><summary>Stimmen die Preise in meinem Supermarkt?</summary><p>Provit nutzt reguläre Regalpreise, keine Aktionspreise. Je nach Region und Markt können die Preise abweichen – alle Angaben sind Richtwerte ohne Gewähr.</p></details>
+      <details><summary>Kann ich meine eigenen Rezepte eintragen?</summary><p>Ja. Zutaten wählst du aus der Preisdatenbank, Preis und Nährwerte rechnet Provit aus. Eigene Rezepte landen auf der Einkaufsliste und tauchen ab und zu im Sparplan auf.</p></details>
+      <details><summary>Ich habe eine Allergie – kann ich Provit nutzen?</summary><p>Unter Profil kannst du Unverträglichkeiten wie Gluten oder Laktose auswählen. Die Erkennung erfolgt automatisch anhand der Zutaten und ohne Gewähr – bitte prüfe immer die Angaben auf der Packung.</p></details>
+    </section>
+
+    <div class="final">
+      <h2>Bereit für eine Woche ohne Reste?</h2>
+      <div class="cta"><a class="btn primary" href="./">Provit kostenlos öffnen</a></div>
+    </div>
+  </main>
+
+  <footer>
+    <span>© 2026 Provit · Preise ohne Gewähr · Aldi, Lidl, Rewe, Edeka und Penny sind Marken ihrer Inhaber; Provit steht in keiner Verbindung zu ihnen.</span>
+    <nav><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+  </footer>
+</div>
+</body>
+</html>
