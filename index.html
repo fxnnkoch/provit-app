@@ -894,6 +894,79 @@ input[type=range].psl-range::-moz-range-thumb {
 .near-hint { font-size: 13px; color: var(--text); background: var(--green-bg); border-radius: 10px; padding: 8px 10px; margin: 2px 0 10px; }
 .rec-count { font-size: 12px; color: var(--text-2); margin: 0 2px 8px; }
 .rp-cov { font-size: 11px; color: var(--green); font-weight: 600; margin-top: 4px; }
+
+
+
+/* ── Rezept anpassen ── */
+.ve-lead { font-size: 13px; color: var(--text-2); line-height: 1.55; margin: 2px 0 12px; }
+.ve-row .ce-name { display: flex; flex-direction: column; min-width: 0; }
+.ve-sub { font-size: 11px; color: var(--text-2); font-weight: 500; }
+.ve-sub.ve-new { color: var(--green); font-weight: 700; }
+.ve-swapping { border-color: var(--green-l); box-shadow: 0 0 0 3px rgba(77,170,120,.18); }
+.ve-when { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: -2px 0 8px 10px; font-size: 12px; color: var(--text-2); }
+.ve-when button { border: 1.5px solid var(--border); background: var(--surface); color: var(--text); border-radius: 999px; padding: 4px 10px; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+.ve-when button[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+.ve-when input { flex: 1 1 100%; margin-top: 2px; font-size: 13px; }
+.ve-removed { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 2px 0 8px; font-size: 12px; color: var(--text-2); }
+.ve-removed button { border: 1.5px dashed var(--border); background: transparent; color: var(--text-2); border-radius: 999px; padding: 4px 10px; font-family: inherit; font-size: 12px; cursor: pointer; text-decoration: line-through; }
+.ve-swaphint { font-size: 12.5px; color: var(--green); background: var(--green-bg); border-radius: 10px; padding: 7px 10px; margin-bottom: 6px; }
+.ve-swaphint button { border: none; background: none; color: var(--text-2); font-family: inherit; font-size: 12px; text-decoration: underline; cursor: pointer; }
+.ve-steps-head { display: flex; justify-content: space-between; align-items: center; margin: 16px 0 8px; }
+.ve-link { border: none; background: none; color: var(--green); font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; padding: 4px 0; }
+.ve-preview .step-text { font-size: 13.5px; }
+.cta-btn.ve-reset { flex: 0 0 auto; width: auto; padding-inline: 18px; background: var(--bg); color: var(--text-2); border: 1.5px solid var(--border); }
+.ed-sw { background: #FFF0C7; border-radius: 4px; padding: 0 2px; }
+.ed-add { background: var(--green-bg); color: var(--green); border-radius: 4px; padding: 0 2px; font-weight: 600; }
+.ed-note { color: #B3412E; font-weight: 600; font-size: .92em; }
+s.ed-rm { color: var(--text-2); text-decoration-color: #B3412E; }
+.ed-banner { display: flex; flex-direction: column; gap: 8px; background: #FFF6DF; border: 1.5px solid #F0D38C; border-radius: 14px; padding: 10px 12px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.45; color: var(--text-2); }
+.ed-banner b { display: block; color: var(--text); font-size: 13.5px; margin-bottom: 1px; }
+.ed-bn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.ed-bn-row button { border: none; border-radius: 9px; padding: 6px 11px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; background: var(--green); color: #fff; }
+.ed-bn-row button.ed-ghost { background: transparent; color: var(--text-2); border: 1.5px solid #E5C98F; }
+.mt.mine { background: #FFF0C7; color: #7A5A12; }
+/* ── Feedback ── */
+.fb-lead { font-size: 13.5px; color: var(--text-2); line-height: 1.55; margin: 4px 0 12px; }
+.fb-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+.fb-chip { border: 1.5px solid var(--border); background: var(--surface); color: var(--text); border-radius: 999px; padding: 7px 13px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.fb-chip[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+.fb-text { width: 100%; box-sizing: border-box; min-height: 140px; border: 1.5px solid var(--border); border-radius: 14px; padding: 12px; font-family: inherit; font-size: 15px; line-height: 1.5; color: var(--text); background: var(--surface); resize: vertical; }
+.fb-text:focus { outline: none; border-color: var(--green-l); }
+.fb-note { font-size: 11.5px; color: var(--text-2); line-height: 1.5; margin: 8px 2px 4px; }
+.fb-done { background: var(--green-bg); border-radius: 14px; padding: 13px 14px; font-size: 13.5px; line-height: 1.5; color: var(--text); }
+.fb-done b { display: block; color: var(--green); font-size: 15px; margin-bottom: 2px; }
+.fb-copy { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 10px 12px; font-size: 14px; font-weight: 600; user-select: all; }
+.fb-copy button, .fb-copybtn { border: 1.5px solid var(--border); background: var(--bg); color: var(--text); border-radius: 10px; padding: 7px 11px; font-family: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.fb-copybtn { margin-top: 8px; width: 100%; padding: 10px; }
+.fb-mailbtn { display: block; margin-top: 12px; text-align: center; text-decoration: none; background: var(--green); color: #fff; border-radius: 14px; padding: 14px; font-weight: 700; font-size: 15px; }
+/* ── Einführung / Tour ── */
+.tour { position: fixed; inset: 0; z-index: 390; pointer-events: none; }
+.tour-blk { position: fixed; background: rgba(12,24,17,.58); pointer-events: auto; }
+.tour.is-tip .tour-blk { background: rgba(12,24,17,.36); }
+.tour-ring { position: fixed; border-radius: 14px; box-shadow: 0 0 0 3px rgba(255,255,255,.95), 0 0 0 7px rgba(77,170,120,.5); pointer-events: none; transition: left .25s, top .25s, width .25s, height .25s; }
+.tour-bub { position: fixed; pointer-events: auto; background: var(--surface); color: var(--text); border-radius: 18px; padding: 15px 16px 12px; box-shadow: 0 18px 44px rgba(0,0,0,.28); font-size: 14px; line-height: 1.5; transition: top .25s, left .25s; box-sizing: border-box; }
+.tour-bub.nudge { animation: tourNudge .35s; }
+@keyframes tourNudge { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.tour-t { display: block; font-size: 16px; margin-bottom: 4px; }
+.tour-bub p { margin: 0 0 12px; color: var(--text-2); }
+.tour-bub p b { color: var(--text); }
+.tour-row { display: flex; justify-content: flex-end; align-items: center; gap: 8px; }
+.tour-skip { margin-right: auto; background: none; border: 0; color: var(--text-2); font-family: inherit; font-size: 13px; padding: 10px 6px; cursor: pointer; }
+.tour-next { background: var(--green); color: #fff; border: 0; border-radius: 12px; padding: 10px 16px; font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
+.tour-dots { display: flex; gap: 5px; margin-bottom: 10px; }
+.tour-dots i { width: 6px; height: 6px; border-radius: 3px; background: var(--border); transition: width .2s; }
+.tour-dots i.on { width: 18px; background: var(--green); }
+.tour-dots i.done { background: var(--green-l); }
+.tour-card { display: flex; flex-direction: column; gap: 9px; background: var(--green-bg); border-radius: 14px; padding: 12px 13px; margin: 0 0 14px; font-size: 12.5px; line-height: 1.45; color: var(--text-2); }
+.tour-card b { display: block; color: var(--green); font-size: 14px; margin-bottom: 1px; }
+.tour-card .tc-row { display: flex; gap: 8px; }
+.tour-card button { border: none; border-radius: 9px; padding: 8px 12px; font-family: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; background: var(--green); color: #fff; }
+.tour-card button.tc-ghost { background: transparent; color: var(--text-2); border: 1.5px solid #C9D9C6; }
+.swipe-hint { position: fixed; left: 50%; bottom: calc(var(--nav-h, 64px) + 18px); transform: translate(-50%, 16px); opacity: 0; pointer-events: none; z-index: 395; display: flex; gap: 10px; align-items: center; width: min(340px, calc(100vw - 32px)); box-sizing: border-box; background: #1B2A21; color: #fff; border-radius: 14px; padding: 11px 14px; font-size: 13px; line-height: 1.4; box-shadow: 0 12px 30px rgba(0,0,0,.25); transition: opacity .3s, transform .3s; }
+.swipe-hint.show { opacity: 1; transform: translate(-50%, 0); }
+.sw-hand { font-size: 22px; display: inline-block; animation: swDown 1.3s ease-in-out infinite; }
+@keyframes swDown { 0% { transform: translateY(-6px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(12px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .sw-hand, .tour-bub.nudge { animation: none; } .tour-ring, .tour-bub { transition: none; } }
 </style>
 
 <div class="app-shell">
@@ -1460,7 +1533,8 @@ function calcRecipeNutrition(r) {
   let k = 0, p = 0;
   (r.ing || []).forEach(([id, amt]) => {
     const n = NUTR_P[id]; if (!n) return;
-    const g = n[2] ? amt * n[2] : amt;
+    let g = n[2] ? amt * n[2] : amt;
+    if (id === 'olivenoel' || id === 'sesamoel' || id === 'rapsoel') g *= 0.92;   // Öl wird in ml angegeben
     k += n[0] * g / 100; p += n[1] * g / 100;
   });
   k += recipeExtras(r).fatKcal;
@@ -2975,6 +3049,8 @@ function _mergeState(p) {
         lunch: (p.lunch && typeof p.lunch === 'object') ? p.lunch : {},
         bioMeat: !!p.bioMeat,
         a2hsDone: !!p.a2hsDone,
+        tour: (p.tour && typeof p.tour === 'object') ? p.tour : null,
+        edits: (p.edits && typeof p.edits === 'object') ? Object.fromEntries(Object.entries(p.edits).filter(([k, v]) => v && Array.isArray(v.rows) && BUILTIN.some(b => b.id === k))) : {},
         allergies: Array.isArray(p.allergies) ? p.allergies.filter(k => typeof k === 'string') : [],
         history: Array.isArray(p.history) ? p.history.filter(e => e && e.week && isFinite(e.planned)) : [],
       };
@@ -4038,7 +4114,8 @@ function renderPlan() {
       </div>`;
   }
   const body = document.getElementById('plan-body');
-  if (body) body.innerHTML = _inAppHintHtml() + _a2hsHintHtml() + (view === 'woche' ? _renderWoche() : _renderHeute());
+  if (body) body.innerHTML = _tourCardHtml() + _inAppHintHtml() + _a2hsHintHtml() + (view === 'woche' ? _renderWoche() : _renderHeute());
+  if (current === 'plan') { try { _tipCheckPlan(); } catch(e) {} }
 }
 
 function _renderHeute() {
@@ -4066,7 +4143,7 @@ function _renderHeute() {
         <span class="hy-sub">Wähle ein Gericht oder lass dir eine günstige Woche vorschlagen.</span></div>
       </div>
       <button class="hy-cta" onclick="openPicker(${fd})">Gericht wählen</button>
-      <button class="hy-ghost" onclick="openSparplan()">${_ICO_BOLT} Sparplan für die Woche</button>
+      <button class="hy-ghost" data-tour="sparplan" onclick="openSparplan()">${_ICO_BOLT} Sparplan für die Woche</button>
     </section>`;
   } else {
     const f = _dayFactor(fd);
@@ -4092,7 +4169,7 @@ function _renderHeute() {
       </div>
       ${leftover
         ? `<button class="hy-cta" onclick="openPlanDetail(${fd})">Details ansehen</button>`
-        : `<button class="hy-cta" onclick="openCook(${fd})">${_ICO_PLAY} Kochmodus starten</button>
+        : `<button class="hy-cta" data-tour="cook" onclick="openCook(${fd})">${_ICO_PLAY} Kochmodus starten</button>
            <button class="hy-ghost" onclick="openPlanDetail(${fd})">Zutaten, Portion &amp; mehr</button>`}
     </section>`;
   }
@@ -4178,8 +4255,8 @@ function _renderWoche() {
 
   h += `<section class="hy-sec" aria-label="Wochenplan">
     <div class="hy-head"><h2 class="hy-label">Deine Woche · ${meals} Mahlzeit${meals === 1 ? '' : 'en'}</h2>
-      <button class="hy-outline" onclick="openSparplan()">${_ICO_BOLT} Sparplan</button></div>
-    <ol class="hy-list">`;
+      <button class="hy-outline" data-tour="sparplan" onclick="openSparplan()">${_ICO_BOLT} Sparplan</button></div>
+    <ol class="hy-list" data-tour="week-list">`;
   for (let d = 0; d < 7; d++) {
     let onclick, extra = '', emptyText, emptyIcon;
     if (inMove) {
@@ -4220,7 +4297,7 @@ function _renderWoche() {
   }
   if (!inMove) h += _restefreiHtml();
   if (meals > 0 && !inMove) {
-    h += `<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="hy-link" onclick="shareWeek()">📤 Plan teilen</button><button class="hy-link" onclick="confirmResetWeek()">Woche abschließen</button></div>`;
+    h += `<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="hy-link" onclick="shareWeek()">📤 Plan teilen</button><button class="hy-link" data-tour="closeweek" onclick="confirmResetWeek()">Woche abschließen</button></div>`;
   }
   if (!inMove) h += _historyHtml();
   return h;
@@ -4419,6 +4496,7 @@ function openPantry(from) {
     ? `<button class="cta-btn" onclick="openSparplan()">Zurück zum Sparplan</button>`
     : `<button class="cta-btn" onclick="closeSheet()">Fertig</button>`;
   openSheet(h, { ctaHtml: cta });
+  try { _tip('pantry', 500); } catch(e) {}
 }
 function setPantryAmt(id, val) {
   const amt = Math.max(0, Number(String(val).replace(',', '.')) || 0);
@@ -4659,7 +4737,7 @@ function renderCook() {
     const txt = steps[c.step - 1];
     const min = _stepMinutes(txt);
     body = `<div class="cook-stepno">Schritt ${c.step} von ${steps.length}</div>
-      <p class="cook-text">${txt}</p>
+      <p class="cook-text">${_stepHtml(r, c.step - 1)}</p>
       ${min ? `<button class="cook-tbtn" onclick="cookTimer(${min})">⏱ Timer ${min} Min. starten</button>` : ''}`;
   }
   const last = c.step === total - 1;
@@ -5164,6 +5242,7 @@ function go(screen, btn) {
   if (screen==='prices')   renderPrices();
   if (screen==='list')     renderList();
   if (screen==='settings') renderSettings();
+  try { _tipAfterNav(screen); } catch(e) {}
 }
 function goSettings() {
   const btn = document.querySelectorAll('.n-item')[4];
@@ -5364,6 +5443,7 @@ function renderDetail() {
           <span class="mt prot">${r.protein}g Protein</span>
           <span class="mt time">⏱ ${r.time} min</span>
           ${!r.isCustom?`<span class="mt time">${difficultyIcon(r.difficulty)}</span>`:''}
+          ${r._edited ? `<span class="mt mine">✏️ Meine Version</span>` : ''}
           ${r.empfohlen_portionen > 1 ? `<span class="mt time">👥 lohnt sich ab ${r.empfohlen_portionen} Portionen</span>` : ''}
         </div>
       </div>
@@ -5385,9 +5465,11 @@ function renderDetail() {
     : `<div style="display:flex;gap:10px">
         <button class="cta-btn" style="background:var(--bg);color:var(--text-2);border:1.5px solid var(--border);flex:0 0 44px;font-size:16px" onclick="confirmHideRecipe('${r.id}')" title="Ausblenden">🚫</button>
         <button class="cta-btn" style="background:var(--bg);color:var(--text-2);border:1.5px solid var(--border);flex:0 0 44px;font-size:16px" onclick="shareRecipe('${r.id}')" title="Teilen" aria-label="Rezept teilen">📤</button>
-        <button class="cta-btn" style="flex:1" onclick="pickForDetail('${r.id}')">Zum Wochenplan hinzufügen</button>
+        <button class="cta-btn" style="background:var(--bg);color:var(--text-2);border:1.5px solid var(--border);flex:0 0 44px;font-size:16px" onclick="openRecipeEdit('${r.id}')" title="Anpassen" aria-label="Rezept anpassen">✏️</button>
+        <button class="cta-btn" style="flex:1;white-space:nowrap" onclick="pickForDetail('${r.id}')">Zum Wochenplan</button>
        </div>`;
   openSheet(html, {ctaHtml});
+  try { _tip('detail', 500); } catch(e) {}
 }
 
 // "Aus dem Vorrat" + "Optional" – nicht auf der Einkaufsliste
@@ -5403,7 +5485,7 @@ function _extrasHtml(r) {
 
 function renderZutaten(r, bs) {
   if (_isLegacyCustom(r)) return `<p style="color:var(--text-2);font-size:14px;line-height:1.6;padding:8px 0">${(r.ingText||'Keine Zutatenliste hinterlegt.')}</p><button class="ce-add-extra" onclick="openAddRecipe('${r.id}')">✏️ Zutaten aus der Liste hinzufügen</button>`;
-  let h = '<div class="sec-label" style="margin-bottom:8px">Für 1 Portion</div><div class="ing-list">';
+  let h = _editBannerHtml(r) + '<div class="sec-label" style="margin-bottom:8px">Für 1 Portion</div><div class="ing-list">';
   r.ing.forEach(([id,amt]) => {
     const ingBest = cheapestFor(id);
     const price = ingCost(id, amt, ingBest);
@@ -5428,9 +5510,9 @@ function renderZutaten(r, bs) {
 
 function renderAnleitung(r) {
   if (!r.steps || !r.steps.length) return `<p style="color:var(--text-2);font-size:14px">Noch keine Anleitung vorhanden.</p>`;
-  let h = '<div class="steps-list">';
+  let h = _editBannerHtml(r) + '<div class="steps-list">';
   r.steps.forEach((step,i) => {
-    h += `<div class="step-row"><div class="step-num">${i+1}</div><div class="step-text">${step}</div></div>`;
+    h += `<div class="step-row"><div class="step-num">${i+1}</div><div class="step-text">${_stepHtml(r, i)}</div></div>`;
   });
   return h + '</div>';
 }
@@ -6309,7 +6391,7 @@ function openSparplan() {
       ${_sparRangeHtml()}
       ${_mealPrepToggleHtml()}
       ${_pantrySummaryHtml()}
-      <div style="display:grid;grid-template-columns:${gridCols};gap:8px;margin-bottom:${macroTilesHtml ? '8px' : '14px'}">
+      <div data-tour="spar-stats" style="display:grid;grid-template-columns:${gridCols};gap:8px;margin-bottom:${macroTilesHtml ? '8px' : '14px'}">
         <div style="background:var(--green-bg);border-radius:12px;padding:10px;text-align:center">
           <div style="font-size:17px;font-weight:700;color:var(--green)">${fmt(realCost)}</div>
           <div style="font-size:10px;color:var(--green);margin-top:2px">Einkauf</div>
@@ -6334,7 +6416,7 @@ function openSparplan() {
     </div>
     <div class="detail-cta" style="display:flex;gap:8px">
       <button onclick="event.stopPropagation();this.textContent='⏳';this.disabled=true;setTimeout(()=>openSparplan(),30)" style="flex:0 0 44px;height:44px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface);font-size:18px;cursor:pointer">🔄</button>
-      <button class="cta-btn" style="flex:1" onclick="applySparplan()">Plan anwenden</button>
+      <button class="cta-btn" data-tour="spar-apply" style="flex:1" onclick="applySparplan()">Plan anwenden</button>
     </div>`);
 }
 
@@ -6732,7 +6814,7 @@ function _leftoverIdeas(id, rest, n = 2) {
 function _restefreiHtml() {
   if (!mealCount()) return '';
   const L = planLeftovers();
-  let h = `<section class="hy-sec" aria-label="Restefrei-Check"><h3 class="hy-label">♻️ Restefrei-Check</h3><div class="rf-card">`;
+  let h = `<section class="hy-sec" data-tour="restefrei" aria-label="Restefrei-Check"><h3 class="hy-label">♻️ Restefrei-Check</h3><div class="rf-card">`;
   if (!L.fresh.length) {
     h += `<div class="rf-top good"><b>Alles Frische wird aufgebraucht</b><span>Von ${L.pkgs} Packungen bleibt nichts Verderbliches übrig.</span></div>`;
   } else {
@@ -7354,11 +7436,15 @@ function obSkipGoals() {
 function skipOnboarding() { completeOnboarding(); }
 
 function completeOnboarding() {
-  S.onboarded = true; save();
+  const first = !S.onboarded;
+  S.onboarded = true;
+  const T = _T(); if (first) T.offer = false;
+  save();
   const overlay = document.getElementById('ob-overlay');
   if (overlay) overlay.hidden = true;
   _syncScreens();
   renderPlan();
+  if (!T.done) setTimeout(startTour, 500);
 }
 
 // ══════════════════════════════════════════
@@ -7463,8 +7549,20 @@ function renderSettings() {
     <div class="set-section" style="margin-top:28px">
       <div class="set-section-title">Daten</div>
       <div class="set-card">
+        <div class="set-trow" onclick="openFeedback()">
+          <span class="set-trow-label">✉️ Feedback senden</span>
+          <span style="color:var(--text-2);font-size:16px">›</span>
+        </div>
         <div class="set-trow" onclick="showOnboardingAgain()">
           <span class="set-trow-label">🔄 Einrichtung wiederholen</span>
+          <span style="color:var(--text-2);font-size:16px">›</span>
+        </div>
+        <div class="set-trow" onclick="startTour()">
+          <span class="set-trow-label">🧭 Tour erneut starten</span>
+          <span style="color:var(--text-2);font-size:16px">›</span>
+        </div>
+        <div class="set-trow" onclick="resetTips()">
+          <span class="set-trow-label">💡 Tipps wieder anzeigen</span>
           <span style="color:var(--text-2);font-size:16px">›</span>
         </div>
         <div class="set-trow" onclick="openPantry()">
@@ -7475,7 +7573,7 @@ function renderSettings() {
           <span class="set-trow-label">🏠 Vorratsschrank${(S.staples||[]).length ? ` (${S.staples.length})` : ''}</span>
           <span style="color:var(--text-2);font-size:16px">›</span>
         </div>
-        <div class="set-trow" onclick="openBackup()">
+        <div class="set-trow" data-tour="backup" onclick="openBackup()">
           <span class="set-trow-label">💾 Daten sichern / übertragen</span>
           <span style="color:var(--text-2);font-size:16px">›</span>
         </div>
@@ -7494,7 +7592,7 @@ function renderSettings() {
         </div>
       </div>
     </div>
-    <div class="set-version">provit · Version 65 · Preise Stand ${PRICE_STAND}<br><span style="font-size:10px">Ortsnamen: GeoNames (CC BY 4.0)</span>${PROVIT_STANDALONE ? `<div class="set-legal"><a href="info.html">Über Provit</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>` : ''}</div>`;
+    <div class="set-version">provit · Version 69 · Preise Stand ${PRICE_STAND}<br><span style="font-size:10px">Ortsnamen: GeoNames (CC BY 4.0)</span>${PROVIT_STANDALONE ? `<div class="set-legal"><a href="info.html">Über Provit</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>` : ''}</div>`;
   document.getElementById('settings-body').innerHTML = h;
 }
 
@@ -7591,6 +7689,7 @@ function doResetAll() {
     age:0, height:175, weight:75, fitnessGoal:'', diet:'all', hiddenRecipes:[], complexityMax:3,
     pantryUsed:{}, staples:[], persons:1, shopMode:'single', leftover:{}, mealPrep:false, planView:'heute', lunch:{}, history:[], bioMeat:false
   };
+  try { _applyAllEdits(); } catch (e) {}
   _applyBio();
   _pantryMapCache = null;
   save(); closeSheet(); renderSettings(); renderPlan();
@@ -7659,6 +7758,7 @@ function doRestoreBackup() {
   let p;
   try { p = _parseBackup(el && el.value); } catch (e) { toast('⚠️ Das ist kein gültiger Sicherungscode'); return; }
   _mergeState(p);
+  try { _applyAllEdits(); } catch (e) {}
   S.onboarded = true;
   try { _applyBio(); } catch (e) {}
   _pantryMapCache = null;
@@ -7690,6 +7790,679 @@ function _inAppHintHtml(onb) {
 try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (e) {}
 
 // ══════════════════════════════════════════
+// REZEPTE ANPASSEN („Meine Version“ eines eingebauten Rezepts)
+// S.edits[rid] = { name?, rows: [[id, amt, origId|null, when|null, text|null]], removed: [origId], steps: [..]|null }
+// ══════════════════════════════════════════
+const _ORIG = {};
+function _origOf(r) {
+  if (!_ORIG[r.id]) _ORIG[r.id] = { ing: (r.ing || []).map(x => [...x]), steps: [...(r.steps || [])], name: r.name };
+  return _ORIG[r.id];
+}
+const _ING_ALIAS = {
+  haehnchen: ['Hähnchen', 'Hähnchenbrust'], haehnchenschenkel: ['Hähnchen', 'Keulen'], pute: ['Pute', 'Putenbrust', 'Putenfleisch'],
+  hackfleisch: ['Hackfleisch', 'Hack'], rinderhack: ['Rinderhack', 'Hackfleisch', 'Hack'], speck: ['Speck'],
+  reis: ['Basmatireis', 'Reis'], parboiled: ['Reis'], pasta: ['Pasta', 'Nudeln', 'Spaghetti', 'Penne', 'Fusilli', 'Tagliatelle', 'Linguine', 'Rigatoni', 'Farfalle'],
+  eier: ['Eier', 'Spiegeleier', 'Rührei'], kaese: ['Gouda', 'Käse'], reibekaese: ['Reibekäse', 'Käse'], sahne: ['Sahne'],
+  zwiebeln: ['Zwiebeln', 'Zwiebel'], rote_zwiebeln: ['Zwiebeln', 'Zwiebel'], kartoffeln: ['Kartoffeln', 'Kartoffel'],
+  tomaten: ['Tomaten'], passierte_tomaten: ['Tomaten', 'Passata'], tomatenfr: ['Tomaten'], kirschtomaten: ['Kirschtomaten', 'Tomaten'],
+  curry: ['Currypaste'], moehren: ['Möhren', 'Möhre', 'Karotten', 'Karotte'], knoblauch: ['Knoblauch'], champignons: ['Champignons', 'Pilze'],
+  lachs: ['Lachs'], lachs_frisch: ['Lachs'], seelachs: ['Seelachs', 'Fisch'], weissfisch: ['Fisch', 'Pangasius'], paprika: ['Paprika', 'Paprikaschote'],
+  spinat: ['Spinat'], spinat_frisch: ['Spinat'], tofu: ['Tofu'], raeuchertofu: ['Räuchertofu', 'Tofu'], kichererbsen: ['Kichererbsen'],
+  brot: ['Brot'], toastbrot: ['Toast'], schinken: ['Schinken'], mozzarella: ['Mozzarella'], feta: ['Feta'], olivenoel: ['Olivenöl'],
+};
+const _ING_STOP = new Set(['Natur', 'Dose', 'Glas', 'Stück', 'Bund', 'Frisch', 'TK', 'Kühlregal', 'Freilandhaltung', 'Scheiben', 'Topf', 'Beutel', 'Kochbeutel', 'Am', 'In']);
+function _ingDn(id) {
+  if (!P[id]) return id;
+  return stripIngQty(P[id].n).replace(/\s*\(.*?\)/g, '').split(/\s+/)
+    .filter(w => !_ING_STOP.has(w.charAt(0).toUpperCase() + w.slice(1)) && !/^(gewürfelt|gerieben|natur|frisch|am|in|gem\.)$/i.test(w) && !/\d/.test(w))
+    .join(' ').trim() || stripIngQty(P[id].n);
+}
+function _ingTerms(id) {
+  const clean = stripIngQty(P[id] ? P[id].n : id).replace(/\s*\(.*?\)/g, '').trim();
+  const words = clean.split(/[\s\/]+/).filter(w => w.length >= 3 && /^[A-ZÄÖÜ]/.test(w) && !_ING_STOP.has(w));
+  return [...new Set([clean, _ingDn(id), ...words, ...(_ING_ALIAS[id] || [])])].filter(t => t && t.length >= 3).sort((a, b) => b.length - a.length);
+}
+const _RE_ESC = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// Findet ganze Wörter, die mit einem Begriff der Zutat beginnen (Groß-/Kleinschreibung beachten: Nomen)
+function _findIngWords(text, id, otherIds) {
+  const other = otherIds.filter(o => o !== id).flatMap(_ingTerms);
+  const found = [];
+  for (const t of _ingTerms(id)) {
+    const re = new RegExp('(^|[^A-Za-zÄÖÜäöüß])(' + _RE_ESC(t) + '[a-zäöüß]*)', 'g');
+    let m;
+    while ((m = re.exec(text))) {
+      const w = m[2];
+      if (/pulver$|mark$|brühe$/.test(w) && !t.endsWith('pulver')) continue;
+      if (other.some(o => o.length > t.length && w.startsWith(o))) continue;
+      if (!found.includes(w)) found.push(w);
+    }
+    if (found.length) break;  // längster passender Begriff gewinnt
+  }
+  return found;
+}
+function _replaceWords(text, words, by) {
+  if (!words.length) return text;
+  const re = new RegExp('(^|[^A-Za-zÄÖÜäöüß])(' + words.map(_RE_ESC).join('|') + ')(?![A-Za-zÄÖÜäöüß])', 'g');
+  return text.replace(re, (m, a) => a + by);
+}
+const _ADD_WHEN = { anbraten: 'mit anbraten', ende: 'zum Schluss', beilage: 'als Beilage', text: 'eigener Text' };
+function _editedRecipe(o, e) {
+  const steps = [...o.steps], hl = { sw: [], rm: [], note: [], add: [] }, sum = [];
+  if (!e) return { ing: o.ing.map(x => [...x]), steps, hl, sum, name: o.name };
+  const rows = e.rows || [], ing = rows.filter(x => P[x[0]] && x[1] > 0).map(x => [x[0], x[1]]);
+  const allIds = [...new Set([...o.ing.map(x => x[0]), ...ing.map(x => x[0])])];
+  const origAmt = Object.fromEntries(o.ing.map(([i, a]) => [i, a]));
+  let autoName = o.name;
+  rows.forEach(([id, amt, orig]) => {
+    if (orig && orig !== id) {
+      const dn = _ingDn(id);
+      const nw = _findIngWords(autoName, orig, allIds); if (nw.length) autoName = _replaceWords(autoName, nw, dn);
+      for (let i = 0; i < steps.length; i++) {
+        const w = _findIngWords(steps[i], orig, allIds);
+        if (w.length) steps[i] = _replaceWords(steps[i], w, dn);
+      }
+      hl.sw.push(dn); sum.push(`${dn} statt ${_ingDn(orig)}`);
+    } else if (orig && Math.abs(amt - (origAmt[orig] || 0)) > 1e-6) {
+      sum.push(`${_ingDn(id)} ${fmtIngAmt(id, amt)} statt ${fmtIngAmt(id, origAmt[orig] || 0)}`);
+    }
+  });
+  (e.removed || []).forEach(orig => {
+    const dn = _ingDn(orig);
+    let hit = false;
+    for (let i = 0; i < steps.length; i++) {
+      const w = _findIngWords(steps[i], orig, allIds);
+      if (!w.length) continue;
+      hit = true;
+      if (steps[i].trimStart().startsWith(w[0])) {   // der ganze Schritt dreht sich um die Zutat
+        hl.rm.push(steps[i]); const nt = ` (Schritt entfällt – ohne ${dn})`; steps[i] += nt; hl.note.push(nt.trim());
+      } else { w.forEach(x => hl.rm.push(x)); steps[i] += ` (ohne ${dn})`; hl.note.push(`(ohne ${dn})`); }
+    }
+    sum.push(`ohne ${dn}`);
+  });
+  if (e.steps && e.steps.length) {
+    const adds = rows.filter(x => !x[2] && P[x[0]]).map(x => `mit ${_ingDn(x[0])}`);
+    return { ing, steps: [...e.steps], hl: { sw: [], rm: [], note: [], add: [] }, sum: [...sum, ...adds, 'Anleitung selbst bearbeitet'], name: e.name || autoName };
+  }
+  rows.forEach(([id, amt, orig, when, text]) => {
+    if (orig || !P[id]) return;
+    const dn = _ingDn(id), a = fmtIngAmt(id, amt);
+    sum.push(`mit ${dn}`);
+    if (when === 'text' && (text || '').trim()) { const s = text.trim(); steps.push(s); hl.add.push(s); return; }
+    if (when === 'beilage') { const s = `${a} ${dn} als Beilage dazu reichen.`; steps.push(s); hl.add.push(s); return; }
+    if (when === 'ende') {
+      let i = steps.length - 1;
+      if (i > 0 && /servier|anricht|garnier|bestreu/i.test(steps[i])) i--;
+      const s = `Zum Schluss ${a} ${dn} unterheben.`;
+      steps[i] = (steps[i] || '') + ' ' + s; hl.add.push(s); return;
+    }
+    let i = steps.findIndex(s => /anbrat|anschwitz|anröst|braten|dünst|brutzel/i.test(s));
+    if (i < 0) i = 0;
+    const s = `${a} ${dn} mit anbraten.`;
+    if (steps.length) steps[i] += ' ' + s; else steps.push(s);
+    hl.add.push(s);
+  });
+  return { ing, steps, hl, sum, name: e.name || autoName };
+}
+function _clearRecipeCaches(id) {
+  delete _extrasCache[id]; delete _allergenCache[id]; delete _tagCache[id];
+  Object.keys(_simCache).forEach(k => { if (k.split('|').includes(id)) delete _simCache[k]; });
+}
+function _applyEdit(r) {
+  if (!r || r.isCustom) return;
+  const o = _origOf(r), e = S.edits && S.edits[r.id];
+  const x = _editedRecipe(o, e);
+  r.ing = x.ing; r.steps = x.steps; r.name = x.name;
+  r._edited = !!e; r._hl = e ? x.hl : null; r._editSum = e ? x.sum : null;
+  _clearRecipeCaches(r.id);
+  Object.assign(r, calcRecipeNutrition(r));
+}
+function _applyAllEdits() {
+  const ids = new Set([...Object.keys(_ORIG), ...Object.keys(S.edits || {})]);
+  ids.forEach(id => { const r = BUILTIN.find(b => b.id === id); if (r) _applyEdit(r); });
+}
+// Schritt als HTML mit Markierungen (getauscht, entfällt, ergänzt)
+function _stepHtml(r, i) {
+  const raw = (r.steps || [])[i] || '';
+  const hl = r._hl;
+  if (!hl) return _esc(raw);
+  const frags = [];
+  hl.add.forEach(s => frags.push([s, 'ed-add'])); hl.note.forEach(s => frags.push([s, 'ed-note']));
+  hl.sw.forEach(s => frags.push([s, 'ed-sw'])); hl.rm.forEach(s => frags.push([s, 'ed-rm']));
+  if (!frags.length) return _esc(raw);
+  frags.sort((a, b) => b[0].length - a[0].length);
+  const re = new RegExp(frags.map(f => _RE_ESC(f[0])).join('|'), 'g');
+  let out = '', last = 0, m;
+  while ((m = re.exec(raw))) {
+    const cls = frags.find(f => f[0] === m[0])[1];
+    out += _esc(raw.slice(last, m.index)) + (cls === 'ed-rm' ? `<s class="ed-rm">${_esc(m[0])}</s>` : `<span class="${cls}">${_esc(m[0])}</span>`);
+    last = m.index + m[0].length;
+    if (m[0].length === 0) re.lastIndex++;
+  }
+  return out + _esc(raw.slice(last));
+}
+function _editBannerHtml(r) {
+  if (!r || !r._edited) return '';
+  return `<div class="ed-banner"><div><b>✏️ Deine Version</b><span>${_esc((r._editSum || []).join(' · ') || 'angepasst')}</span></div>
+    <div class="ed-bn-row"><button onclick="openRecipeEdit('${r.id}')">Bearbeiten</button><button class="ed-ghost" onclick="restoreRecipe('${r.id}')">Original wiederherstellen</button></div></div>`;
+}
+
+// ── Editor ──
+let _ved = null;
+function openRecipeEdit(rid) {
+  const r = byId(rid); if (!r || r.isCustom) return;
+  const o = _origOf(r), e = S.edits && S.edits[rid];
+  _ved = {
+    rid, name: e && e.name ? e.name : o.name, nameTouched: !!(e && e.name),
+    rows: e ? e.rows.map(x => ({ id: x[0], amt: x[1], orig: x[2] || null, when: x[3] || 'anbraten', text: x[4] || '' }))
+            : o.ing.map(([id, amt]) => ({ id, amt, orig: id, when: null, text: '' })),
+    removed: e ? [...(e.removed || [])] : [],
+    manual: e && e.steps ? e.steps.join('\n') : null,
+    swapIdx: null,
+  };
+  sheetMode = 'variant';
+  openSheet(`
+    <div class="sheet-header">
+      <span class="sheet-title">✏️ Rezept anpassen</span>
+      <button class="sheet-close" onclick="closeSheet()">✕</button>
+    </div>
+    <div class="sheet-scroll">
+      <p class="ve-lead">Deine Änderungen gelten nur für dich – das Original bleibt erhalten. Preis, Nährwerte und Einkaufsliste passen sich automatisch an.</p>
+      <div class="form-group">
+        <label class="form-label" for="ve-name">Name</label>
+        <input class="form-input" id="ve-name" value="${_esc(_ved.name)}" oninput="_ved.name=this.value;_ved.nameTouched=true">
+      </div>
+      <label class="form-label">Zutaten für 1 Portion</label>
+      <div id="ve-rows"></div>
+      <div class="ce-search-wrap" style="margin-top:4px">
+        <div id="ve-swaphint" class="ve-swaphint" hidden></div>
+        <input class="form-input" id="ve-search" type="text" placeholder="Zutat hinzufügen, z. B. Champignons" autocomplete="off" oninput="_veSearch(this.value)" />
+        <div id="ve-results" class="ce-results"></div>
+      </div>
+      <div id="ve-sum" class="ce-sum"></div>
+      <div class="ve-steps-head"><label class="form-label" style="margin:0">Anleitung</label><button class="ve-link" id="ve-manual-btn" onclick="_veToggleManual()"></button></div>
+      <div id="ve-steps"></div>
+    </div>`,
+    { ctaHtml: `<div style="display:flex;gap:8px">${e ? `<button class="cta-btn ve-reset" onclick="restoreRecipe('${rid}')">Original</button>` : ''}<button class="cta-btn" style="flex:1" onclick="saveRecipeEdit()">Meine Version speichern</button></div>` });
+  _veRender();
+}
+function _veEdit() {
+  const rows = _ved.rows.filter(x => P[x.id]).map(x => [x.id, Math.round(x.amt * 1000) / 1000, x.orig || null, x.orig ? null : (x.when || 'anbraten'), x.orig ? null : (x.text || null)]);
+  const steps = _ved.manual != null ? _ved.manual.split('\n').map(s => s.trim()).filter(Boolean) : null;
+  return { name: _ved.nameTouched ? (_ved.name || '').trim() : '', rows, removed: [..._ved.removed], steps };
+}
+function _veIsOriginal(o, e) {
+  if (e.steps) return false;
+  if (e.name && e.name !== o.name) return false;
+  if (e.removed.length) return false;
+  if (e.rows.length !== o.ing.length) return false;
+  return e.rows.every(([id, amt, orig], k) => orig === id && o.ing[k] && o.ing[k][0] === id && Math.abs(o.ing[k][1] - amt) < 1e-6);
+}
+function _veRender() {
+  const el = document.getElementById('ve-rows'); if (!el) return;
+  let h = '';
+  _ved.rows.forEach((x, i) => {
+    const u = _ceUnit(x.id), dn = stripIngQty(P[x.id].n);
+    const sub = x.orig && x.orig !== x.id ? `<small class="ve-sub">statt ${_esc(_ingDn(x.orig))}</small>` : (!x.orig ? `<small class="ve-sub ve-new">neu</small>` : '');
+    h += `<div class="ce-row ve-row${_ved.swapIdx === i ? ' ve-swapping' : ''}">
+      <span class="ce-name">${_esc(dn)}${sub}</span>
+      <input class="ce-amt" type="number" inputmode="decimal" min="0" step="any" value="${Math.round(x.amt / u.mult * 100) / 100}" oninput="_ved.rows[${i}].amt=(parseFloat(this.value.replace(',','.'))||0)*${u.mult};_veSum()" aria-label="Menge ${_esc(dn)}">
+      <span class="ce-unit">${u.label}</span>
+      <button class="ce-del" onclick="_veSwapStart(${i})" aria-label="${_esc(dn)} tauschen" title="Tauschen">⇄</button>
+      <button class="ce-del" onclick="_veRemove(${i})" aria-label="${_esc(dn)} entfernen" title="Entfernen">✕</button>
+    </div>`;
+    if (!x.orig) {
+      h += `<div class="ve-when"><span>Wann?</span>${Object.entries(_ADD_WHEN).map(([k, l]) => `<button aria-pressed="${x.when === k}" onclick="_ved.rows[${i}].when='${k}';_veRender()">${l}</button>`).join('')}
+        ${x.when === 'text' ? `<input class="form-input" placeholder="z. B. Champignons in Scheiben schneiden und mitbraten." value="${_esc(x.text)}" oninput="_ved.rows[${i}].text=this.value;_veSteps()">` : ''}</div>`;
+    }
+  });
+  if (_ved.removed.length) h += `<div class="ve-removed"><span>Entfernt:</span>${_ved.removed.map(id => `<button onclick="_veRestore('${id}')">${_esc(_ingDn(id))} ↺</button>`).join('')}</div>`;
+  el.innerHTML = h || `<div class="ce-empty">Keine Zutaten – füge unten welche hinzu.</div>`;
+  const hint = document.getElementById('ve-swaphint'), s = document.getElementById('ve-search');
+  if (hint && s) {
+    if (_ved.swapIdx != null) {
+      hint.hidden = false;
+      hint.innerHTML = `⇄ <b>${_esc(stripIngQty(P[_ved.rows[_ved.swapIdx].id].n))}</b> tauschen gegen … <button onclick="_ved.swapIdx=null;_veRender()">Abbrechen</button>`;
+      s.placeholder = 'Ersatz suchen, z. B. Tofu';
+    } else { hint.hidden = true; s.placeholder = 'Zutat hinzufügen, z. B. Champignons'; }
+  }
+  _veSum(); _veSteps();
+}
+function _veSum() {
+  const el = document.getElementById('ve-sum'); if (!el) return;
+  const r = byId(_ved.rid), o = _origOf(r);
+  const tmp = { id: '_ve_tmp', ing: _ved.rows.filter(x => P[x.id] && x.amt > 0).map(x => [x.id, x.amt]), steps: o.steps };
+  const orig = { id: '_ve_o', ing: o.ing, steps: o.steps };
+  const clr = () => { delete _extrasCache['_ve_tmp']; delete _extrasCache['_ve_o']; };
+  clr();
+  const on = calcRecipeNutrition(orig), n = calcRecipeNutrition(tmp);
+  const cost = recipeCost(tmp, bestStoreFor(tmp)), oc = recipeCost(orig, bestStoreFor(orig));
+  clr();
+  const d = (a, b, f) => Math.abs(a - b) < 0.005 ? '' : ` <small>(${a > b ? '+' : '−'}${f(Math.abs(a - b))})</small>`;
+  el.innerHTML = `<span>Pro Portion</span><b>${fmt(cost)}${d(cost, oc, fmt)}</b><b>${n.kcal} kcal${d(n.kcal, on.kcal, v => v)}</b><b>${n.protein} g Protein${d(n.protein, on.protein, v => v + ' g')}</b>`;
+}
+function _veSteps() {
+  const el = document.getElementById('ve-steps'); if (!el) return;
+  const btn = document.getElementById('ve-manual-btn');
+  const r = byId(_ved.rid), o = _origOf(r);
+  if (_ved.manual != null) {
+    if (btn) btn.textContent = 'Automatisch anpassen';
+    el.innerHTML = `<textarea class="form-textarea" id="ve-manual" style="min-height:160px" oninput="_ved.manual=this.value">${_esc(_ved.manual)}</textarea>
+      <div class="form-hint">Ein Schritt pro Zeile. Solange du die Anleitung selbst bearbeitest, passt Provit sie bei Zutaten-Änderungen nicht mehr automatisch an.</div>`;
+    return;
+  }
+  if (btn) btn.textContent = 'Selbst bearbeiten';
+  const e = _veEdit(); e.steps = null;
+  const x = _editedRecipe(o, e);
+  if (!_ved.nameTouched) { _ved.name = x.name; const ni = document.getElementById('ve-name'); if (ni && ni.value !== x.name) ni.value = x.name; }
+  const fake = { steps: x.steps, _hl: x.hl };
+  el.innerHTML = `<div class="steps-list ve-preview">${x.steps.map((s, i) => `<div class="step-row"><div class="step-num">${i + 1}</div><div class="step-text">${_stepHtml(fake, i)}</div></div>`).join('')}</div>
+    <div class="form-hint">Vorschau: Getauschte Zutaten sind ersetzt, entfernte durchgestrichen, neue ergänzt.</div>`;
+}
+function _veToggleManual() {
+  if (_ved.manual != null) { _ved.manual = null; }
+  else { const e = _veEdit(); e.steps = null; _ved.manual = _editedRecipe(_origOf(byId(_ved.rid)), e).steps.join('\n'); }
+  _veSteps();
+}
+function _veSearch(q) {
+  const el = document.getElementById('ve-results'); if (!el) return;
+  q = (q || '').trim().toLowerCase();
+  if (q.length < 2) { el.innerHTML = ''; return; }
+  const syn = (typeof _SYN !== 'undefined' && (_SYN[q] || _SYN[q.replace(/n$/, '')])) || [];
+  const used = new Set(_ved.rows.map(x => x.id));
+  const hits = Object.keys(P).filter(id => !used.has(id) && (stripIngQty(P[id].n).toLowerCase().includes(q) || syn.includes(id) || id.includes(q)))
+    .sort((a, b) => { const A = stripIngQty(P[a].n).toLowerCase(), B = stripIngQty(P[b].n).toLowerCase(); return (B.startsWith(q) - A.startsWith(q)) || A.localeCompare(B, 'de'); })
+    .slice(0, 8);
+  el.innerHTML = hits.length
+    ? hits.map(id => `<button class="ce-hit" onclick="_vePick('${id}')"><span>${stripIngQty(P[id].n)}</span><small>${P[id].n.replace(stripIngQty(P[id].n), '').trim()}</small></button>`).join('')
+    : `<div class="ce-nohit">Nicht in der Preisliste.</div>`;
+}
+function _vePick(id) {
+  if (_ved.swapIdx != null) {
+    const x = _ved.rows[_ved.swapIdx];
+    const sameUnit = _pantryUnitType(x.id) === _pantryUnitType(id) && x.id !== 'knoblauch' && id !== 'knoblauch';
+    x.amt = sameUnit ? x.amt : _ceDefault(id) * _ceUnit(id).mult;
+    if (x.orig === id) x.orig = id;   // zurückgetauscht
+    x.id = id;
+    _ved.swapIdx = null;
+  } else {
+    const back = _ved.removed.indexOf(id);
+    if (back >= 0) { _veRestore(id); }
+    else _ved.rows.push({ id, amt: _ceDefault(id) * _ceUnit(id).mult, orig: null, when: 'anbraten', text: '' });
+  }
+  const s = document.getElementById('ve-search'); if (s) s.value = '';
+  const r = document.getElementById('ve-results'); if (r) r.innerHTML = '';
+  _veRender();
+}
+function _veSwapStart(i) {
+  _ved.swapIdx = _ved.swapIdx === i ? null : i;
+  _veRender();
+  const s = document.getElementById('ve-search'); if (s && _ved.swapIdx != null) { s.focus(); s.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+}
+function _veRemove(i) {
+  const x = _ved.rows[i];
+  if (x.orig && !_ved.removed.includes(x.orig)) _ved.removed.push(x.orig);
+  _ved.rows.splice(i, 1);
+  if (_ved.swapIdx === i) _ved.swapIdx = null;
+  _veRender();
+}
+function _veRestore(origId) {
+  const o = _origOf(byId(_ved.rid)), k = o.ing.findIndex(x => x[0] === origId);
+  _ved.removed = _ved.removed.filter(x => x !== origId);
+  if (k >= 0 && !_ved.rows.some(x => x.id === origId)) {
+    // an der ursprünglichen Stelle wieder einfügen
+    const before = o.ing.slice(0, k).map(x => x[0]);
+    let pos = 0; _ved.rows.forEach((x, j) => { if (before.includes(x.orig)) pos = j + 1; });
+    _ved.rows.splice(pos, 0, { id: origId, amt: o.ing[k][1], orig: origId, when: null, text: '' });
+  }
+  _veRender();
+}
+function saveRecipeEdit() {
+  const r = byId(_ved.rid); if (!r) return;
+  const e = _veEdit(), o = _origOf(r);
+  if (!e.rows.length) { toast('Mindestens eine Zutat wird gebraucht'); return; }
+  if (!e.name || e.name === o.name) delete e.name;
+  if (!e.steps) delete e.steps;
+  S.edits = S.edits || {};
+  if (_veIsOriginal(o, { ...e, removed: e.removed, rows: e.rows })) delete S.edits[r.id];
+  else S.edits[r.id] = e;
+  _applyEdit(r);
+  save();
+  const rid = r.id; _ved = null;
+  openDetail(rid); renderRecipes(); renderPlan();
+  toast(r._edited ? '✏️ Deine Version ist gespeichert' : 'Keine Änderungen – Original bleibt');
+}
+function restoreRecipe(rid) {
+  const r = byId(rid); if (!r) return;
+  if (S.edits) delete S.edits[rid];
+  _applyEdit(r); save();
+  _ved = null;
+  openDetail(rid); renderRecipes(); renderPlan();
+  toast('↺ Original wiederhergestellt');
+}
+
+// ══════════════════════════════════════════
+// FEEDBACK per E-Mail (nur in den Einstellungen)
+// ══════════════════════════════════════════
+const PROVIT_VERSION = 69;
+const FEEDBACK_MAIL = 'fxnn.koch@gmail.com';
+const _FB_CATS = ['Fehler', 'Idee', 'Rezept', 'Preise', 'Sonstiges'];
+let _fbCat = 'Fehler', _fbText = '';
+function openFeedback() {
+  sheetMode = 'feedback';
+  openSheet(`
+    <div class="sheet-header">
+      <span class="sheet-title">✉️ Feedback senden</span>
+      <button class="sheet-close" onclick="closeSheet()">✕</button>
+    </div>
+    <div class="sheet-scroll" id="fb-body">${_fbFormHtml()}</div>`,
+    { ctaHtml: `<button class="cta-btn" onclick="sendFeedback()">Per E-Mail senden</button>` });
+}
+function _fbFormHtml() {
+  return `<p class="fb-lead">Was ist dir aufgefallen? Jede Rückmeldung hilft, Provit besser zu machen – auch Kleinigkeiten.</p>
+    <div class="fb-chips" role="group" aria-label="Art der Rückmeldung">${_FB_CATS.map(c =>
+      `<button class="fb-chip" aria-pressed="${c === _fbCat}" onclick="_fbPick('${c}')">${c}</button>`).join('')}</div>
+    <textarea id="fb-text" class="fb-text" rows="6" placeholder="${_fbPlaceholder()}" oninput="_fbText=this.value">${_fbText.replace(/</g, '&lt;')}</textarea>
+    <p class="fb-note">Geht als E-Mail an ${FEEDBACK_MAIL}. Mitgeschickt werden nur App-Version und Gerätetyp – keine Daten aus deinem Plan.</p>`;
+}
+function _fbPlaceholder() {
+  return { Fehler: 'z. B. Beim Tippen auf „Plan anwenden“ passiert nichts …', Idee: 'z. B. Ich fände es gut, wenn …',
+    Rezept: 'Welches Rezept? Was stimmt nicht (Menge, Schritt, Zeit)?', Preise: 'Welche Zutat, welcher Laden, welcher Preis?',
+    Sonstiges: 'Schreib einfach drauflos …' }[_fbCat];
+}
+function _fbPick(c) {
+  _fbCat = c;
+  document.querySelectorAll('.fb-chip').forEach(b => b.setAttribute('aria-pressed', b.textContent === c ? 'true' : 'false'));
+  const t = document.getElementById('fb-text'); if (t) t.placeholder = _fbPlaceholder();
+}
+function _fbDevice() {
+  const ua = navigator.userAgent || '';
+  const os = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? 'iOS'
+    : /Android/.test(ua) ? 'Android' : /Mac/.test(ua) ? 'Mac' : /Windows/.test(ua) ? 'Windows' : 'anderes Gerät';
+  const home = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone;
+  return `${os} · ${PROVIT_STANDALONE ? (home ? 'Home-Bildschirm' : 'Browser') : 'Claude'} · ${window.innerWidth}px`;
+}
+function _fbMail() {
+  const subject = `Provit Feedback: ${_fbCat}`;
+  const body = `${_fbText.trim()}\n\n—\nProvit Version ${PROVIT_VERSION} · ${_fbDevice()} · ${new Date().toLocaleDateString('de-DE')}`;
+  return { subject, body, url: `mailto:${FEEDBACK_MAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}` };
+}
+function sendFeedback() {
+  const t = document.getElementById('fb-text'); if (t) _fbText = t.value;
+  if (!_fbText.trim()) { toast('Schreib kurz, was dir aufgefallen ist'); if (t) t.focus(); return; }
+  const m = _fbMail();
+  // Wichtig: die App selbst nie auf „mailto:“ umleiten – auf dem Home-Bildschirm (iPhone) und in der
+  // Claude-Ansicht bleibt sonst eine weiße Seite ohne Zurück. Der Link öffnet das Mailprogramm separat.
+  const body = document.getElementById('fb-body');
+  if (body) body.innerHTML = `<div class="fb-done"><b>Fast geschafft</b>
+      Tippe auf „E-Mail öffnen“ – dein Text ist dort schon eingetragen. Danach einfach senden und zurück zu Provit wechseln.</div>
+    <a class="fb-mailbtn" href="${_esc(m.url)}" target="_blank" rel="noopener">✉️ E-Mail öffnen</a>
+    <p class="fb-lead" style="margin-top:14px">Öffnet sich nichts? Dann Adresse und Text kopieren und selbst per E-Mail schicken:</p>
+    <div class="fb-copy"><span>${FEEDBACK_MAIL}</span><button onclick="_copyText(FEEDBACK_MAIL,'fb-fallback')">Adresse kopieren</button></div>
+    <button class="fb-copybtn" onclick="_copyText(_fbMail().subject + '\\n\\n' + _fbMail().body,'fb-fallback')">Text kopieren</button>
+    <textarea class="bk-code" id="fb-fallback" readonly hidden style="margin-top:8px"></textarea>`;
+  const cta = document.querySelector('#sheet .detail-cta');
+  if (cta) cta.innerHTML = `<div style="display:flex;gap:8px"><button class="cta-btn ve-reset" onclick="openFeedback()">Zurück</button><button class="cta-btn" style="flex:1" onclick="_fbText='';closeSheet();toast('✉️ Danke für dein Feedback!')">Fertig</button></div>`;
+}
+
+// ══════════════════════════════════════════
+// EINFÜHRUNG: geführter erster Plan, Tipps beim ersten Besuch, Gesten-Hinweise
+// ══════════════════════════════════════════
+function _T() {
+  if (!S.tour || typeof S.tour !== 'object') S.tour = { done: false, seen: {}, offer: !!S.onboarded, xc: 0 };
+  if (!S.tour.seen || typeof S.tour.seen !== 'object') S.tour.seen = {};
+  return S.tour;
+}
+let _tour = null;            // laufende Tour oder Tipp: { steps, i, tip, el, raf, wait }
+const _TOUR_STEPS = [
+  { key: 'sparplan', sel: '[data-tour="sparplan"]', click: true, btn: 'Sparplan öffnen',
+    title: 'Deine Woche in einem Tipp',
+    text: 'Der <b>Sparplan</b> stellt dir Gerichte zusammen, die zu Budget, Vorräten und Geschmack passen – und sich Zutaten teilen.',
+    prep() { if (!_tourVisible('[data-tour="sparplan"]')) setPlanView('woche'); } },
+  { key: 'stats', sel: '[data-tour="spar-stats"]', wait: 4000,
+    title: 'Was kostet die Woche?',
+    text: 'Hier siehst du den <b>Einkauf</b>, die Zahl der Zutaten und was an <b>frischen Resten</b> übrig bliebe. Mit 🔄 bekommst du einen neuen Vorschlag.' },
+  { key: 'apply', sel: '[data-tour="spar-apply"]', click: true, btn: 'Plan anwenden',
+    title: 'Passt?',
+    text: 'Dann übernimm den Plan. Einzelne Gerichte kannst du danach jederzeit tauschen.' },
+  { key: 'week', sel: () => { const d = [0,1,2,3,4,5,6].find(x => S.plan[x]); return d === undefined ? null : document.querySelectorAll('[data-tour="week-list"] > li')[d] || null; }, wait: 2500,
+    title: 'Dein Wochenplan',
+    text: 'Gericht <b>antippen</b> für Rezept und Kochmodus. <b>Gedrückt halten und ziehen</b>, um es auf einen anderen Tag zu legen.',
+    prep() { if (S.planView !== 'woche') setPlanView('woche'); } },
+  { key: 'reste', sel: '[data-tour="restefrei"]', wait: 1500, scroll: true,
+    title: 'Restefrei-Check',
+    text: 'Zeigt, was nach dem Einkauf übrig bleibt – mit Rezeptideen, damit nichts im Müll landet.' },
+  { key: 'liste', sel: () => document.querySelectorAll('.n-item')[3],
+    title: 'Einkaufen',
+    text: 'Unter <b>Liste</b> steht dein Einkauf, sortiert nach Supermarkt. Unter <b>Preise</b> siehst du, welcher Laden am günstigsten ist.',
+    prep() { const sc = document.getElementById('plan-body'); if (sc) sc.scrollTop = 0; } },
+  { key: 'ende', sel: null, btn: 'Los geht’s',
+    title: 'Fertig – viel Spaß beim Planen!',
+    text: 'Weitere kurze Tipps erscheinen, wenn du einen Bereich zum ersten Mal öffnest. Die Tour findest du jederzeit unter <b>Profil → Tour erneut starten</b>.' },
+];
+const _TIPS = {
+  recipes: { sel: '#sc-recipes .search-wrap', title: 'Suche, die mitdenkt',
+    text: 'Schreib einfach, worauf du Lust hast: „schnell Hähnchen unter 3 €“, „vegetarisch ohne Pilze“ oder „Klassiker“. Über <b>+</b> legst du eigene Rezepte an.' },
+  prices: { sel: '#prices-body > *', need: () => mealCount() > 0, title: 'Preisvergleich',
+    text: 'So viel kostet dein Wocheneinkauf in jedem Supermarkt. Provit zeigt auch, ob sich das Aufteilen auf zwei Läden lohnt.' },
+  list: { sel: '#sc-list .pt-headbtn', need: () => mealCount() > 0, title: 'Einkaufsliste',
+    text: 'Beim Einkaufen einfach abhaken. Über den <b>Korb</b> trägst du ein, was du schon zu Hause hast – das wird eingeplant und fällt von der Liste.' },
+  settings: { sel: '[data-tour="backup"]', scroll: true, title: 'Wichtig: Daten sichern',
+    text: 'Deine Daten liegen nur auf diesem Handy. Mit dem <b>Sicherungscode</b> nimmst du Plan, Vorräte und Rezepte auf ein neues Gerät mit.' },
+  detail: { sel: '#sheet .tab-bar', title: 'Das Rezept',
+    text: '<b>Zutaten & Preise</b> zeigt, was das Gericht im günstigsten Laden kostet. Unter <b>Anleitung</b> stehen alle Schritte.' },
+  pantry: { sel: '#sheet .sheet-header', title: 'Vorräte',
+    text: 'Trag ein, was du noch zu Hause hast. Der Sparplan baut es ein, und es fehlt automatisch auf der Einkaufsliste.' },
+  cook: { sel: '[data-tour="cook"]', title: 'Kochmodus',
+    text: 'Führt dich Schritt für Schritt durchs Rezept – mit großer Schrift und Timern. Das Display bleibt dabei an.' },
+  closeweek: { sel: '[data-tour="closeweek"]', scroll: true, need: () => mealCount() > 0 && todayIdx() >= 4, title: 'Woche abschließen',
+    text: 'Am Ende der Woche eintragen, was du wirklich ausgegeben hast. Daraus entsteht dein Monatsrückblick.' },
+};
+
+function _tourEl(sel) {
+  if (!sel) return null;
+  if (typeof sel === 'function') return sel();
+  const all = document.querySelectorAll(sel);
+  for (const el of all) { const r = el.getBoundingClientRect(); if (r.width > 0 && r.height > 0) return el; }
+  return null;
+}
+function _tourVisible(sel) { return !!_tourEl(sel); }
+
+function startTour() {
+  if (_tour) _tourEnd(false);
+  const T = _T(); T.offer = false; save();
+  if (current !== 'plan') go('plan', document.querySelectorAll('.n-item')[0]);
+  if (document.getElementById('overlay')?.classList.contains('open')) closeSheet();
+  _tour = { steps: _TOUR_STEPS, i: 0, tip: false };
+  _tourBuild();
+  _tourShow();
+}
+function _tourBuild() {
+  let L = document.getElementById('tour');
+  if (!L) {
+    L = document.createElement('div'); L.id = 'tour'; L.className = 'tour';
+    L.innerHTML = `<div class="tour-blk" data-b="t"></div><div class="tour-blk" data-b="l"></div><div class="tour-blk" data-b="r"></div><div class="tour-blk" data-b="b"></div>
+      <div class="tour-ring"></div><div class="tour-bub" role="dialog" aria-live="polite"></div>`;
+    document.body.appendChild(L);
+    L.querySelectorAll('.tour-blk').forEach(b => b.addEventListener('click', e => {
+      e.stopPropagation(); e.preventDefault();
+      if (_tour && _tour.tip) _tourEnd(true);
+      else { const bub = L.querySelector('.tour-bub'); bub.classList.remove('nudge'); void bub.offsetWidth; bub.classList.add('nudge'); }
+    }));
+  }
+  L.hidden = false;
+  L.classList.toggle('is-tip', !!(_tour && _tour.tip));
+  return L;
+}
+function _tourShow() {
+  if (!_tour) return;
+  const st = _tour.steps[_tour.i];
+  try { st.prep && st.prep(); } catch (e) {}
+  const L = _tourBuild();
+  const bub = L.querySelector('.tour-bub');
+  const n = _tour.steps.length;
+  const dots = _tour.tip ? '' : `<div class="tour-dots" aria-label="Schritt ${_tour.i + 1} von ${n}">${_tour.steps.map((_, k) => `<i class="${k === _tour.i ? 'on' : (k < _tour.i ? 'done' : '')}"></i>`).join('')}</div>`;
+  const last = _tour.i === n - 1;
+  bub.innerHTML = `${dots}<b class="tour-t">${st.title}</b><p>${st.text}</p>
+    <div class="tour-row">${_tour.tip || last ? '' : `<button class="tour-skip" onclick="_tourEnd(true)">Überspringen</button>`}
+      <button class="tour-next" onclick="_tourNext(true)">${_tour.tip ? 'Verstanden' : (st.btn || 'Weiter')}</button></div>`;
+  bub.style.visibility = 'hidden';
+  _tour.el = null; _tour.t0 = Date.now();
+  if (_tour.raf) cancelAnimationFrame(_tour.raf);
+  const tick = () => {
+    if (!_tour) return;
+    const cur = _tour.steps[_tour.i];
+    let el = _tour.el && document.contains(_tour.el) ? _tour.el : _tourEl(cur.sel);
+    if (cur.sel && !el) {
+      // Ziel erscheint gleich (z. B. Sparplan wird berechnet) – kurz warten, sonst Schritt überspringen
+      if (Date.now() - _tour.t0 > (cur.wait || 1200)) { _tourNext(false); return; }
+      _tourPlace(null, true);
+    } else {
+      if (el && el !== _tour.el) {
+        _tour.el = el;
+        if (cur.scroll || cur.wait) { try { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {} }
+      }
+      _tourPlace(el, false);
+      if (bub.style.visibility === 'hidden') {
+        bub.style.visibility = '';
+        setTimeout(() => { try { bub.querySelector('.tour-next').focus({ preventScroll: true }); } catch (e) {} }, 30);
+      }
+    }
+    _tour.raf = requestAnimationFrame(tick);
+  };
+  tick();
+}
+function _tourPlace(el, hide) {
+  const L = document.getElementById('tour'); if (!L) return;
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const ring = L.querySelector('.tour-ring'), bub = L.querySelector('.tour-bub');
+  const blk = {}; L.querySelectorAll('.tour-blk').forEach(b => blk[b.dataset.b] = b);
+  let x = vw / 2, y = vh / 2, w = 0, h = 0;
+  if (el) {
+    const r = el.getBoundingClientRect(), p = 6;
+    x = Math.max(4, r.left - p); y = Math.max(4, r.top - p);
+    w = Math.min(vw - 4, r.right + p) - x; h = Math.min(vh - 4, r.bottom + p) - y;
+  }
+  const set = (e, l, t, ww, hh) => { e.style.left = l + 'px'; e.style.top = t + 'px'; e.style.width = Math.max(0, ww) + 'px'; e.style.height = Math.max(0, hh) + 'px'; };
+  set(blk.t, 0, 0, vw, y); set(blk.b, 0, y + h, vw, vh - y - h);
+  set(blk.l, 0, y, x, h); set(blk.r, x + w, y, vw - x - w, h);
+  ring.style.display = el ? '' : 'none';
+  if (el) set(ring, x, y, w, h);
+  L.classList.toggle('no-target', !el);
+  if (hide) { bub.style.visibility = 'hidden'; return; }
+  // Sprechblase unter oder über dem Ziel, sonst mittig
+  const bw = Math.min(330, vw - 24), bh = bub.offsetHeight || 160;
+  let bx = el ? Math.min(Math.max(12, x + w / 2 - bw / 2), vw - bw - 12) : (vw - bw) / 2;
+  let by;
+  if (!el) by = Math.max(12, (vh - bh) / 2);
+  else if (y + h + 14 + bh < vh - 8) by = y + h + 14;
+  else if (y - 14 - bh > 8) by = y - 14 - bh;
+  else by = Math.max(12, Math.min(vh - bh - 12, y + h / 2 - bh / 2));
+  bub.style.width = bw + 'px'; bub.style.left = bx + 'px'; bub.style.top = by + 'px';
+}
+function _tourNext(byButton) {
+  if (!_tour) return;
+  const st = _tour.steps[_tour.i];
+  if (byButton && st.click && _tour.el) { _tourAdvanceAfterClick(_tour.el); return; }
+  if (_tour.tip || _tour.i >= _tour.steps.length - 1) { _tourEnd(true); return; }
+  _tour.i++; _tourShow();
+}
+// Das markierte Element ist antippbar: Tippen führt die Aktion aus und geht zum nächsten Schritt
+function _tourAdvanceAfterClick(el) {
+  if (!_tour) return;
+  if (_tour.tip) { _tourEnd(true); if (el) el.click(); return; }
+  const i = _tour.i;
+  _tour.i = Math.min(i + 1, _tour.steps.length - 1);
+  _tour.el = null;
+  const L = document.getElementById('tour'); if (L) L.querySelector('.tour-bub').style.visibility = 'hidden';
+  if (el) el.click();
+  setTimeout(_tourShow, 120);
+}
+document.addEventListener('click', e => {
+  if (!_tour || !_tour.el || !e.isTrusted) return;
+  if (e.target.closest('#tour')) return;
+  if (!_tour.el.contains(e.target)) return;
+  const st = _tour.steps[_tour.i];
+  if (_tour.tip) { setTimeout(() => _tourEnd(true), 0); return; }
+  if (st.click) {
+    // Klick normal durchlassen, danach weiter
+    _tour.i = Math.min(_tour.i + 1, _tour.steps.length - 1); _tour.el = null;
+    const L = document.getElementById('tour'); if (L) L.querySelector('.tour-bub').style.visibility = 'hidden';
+    setTimeout(_tourShow, 120);
+  }
+}, true);
+function _tourEnd(mark) {
+  if (!_tour) return;
+  if (_tour.raf) cancelAnimationFrame(_tour.raf);
+  const T = _T();
+  if (mark) { if (_tour.tip) T.seen[_tour.tipKey] = 1; else T.done = true; save(); }
+  const wasTour = !_tour.tip;
+  _tour = null;
+  const L = document.getElementById('tour'); if (L) L.hidden = true;
+  if (wasTour && mark) setTimeout(() => _tipCheckPlan(), 600);
+}
+document.addEventListener('keydown', e => {
+  if (!_tour) return;
+  if (e.key === 'Escape') { e.stopImmediatePropagation(); e.preventDefault(); _tourEnd(true); }
+}, true);
+window.addEventListener('resize', () => { if (_tour && _tour.el) _tourPlace(_tour.el, false); });
+
+// ── Tipps beim ersten Besuch ──
+function _tip(key, delay) {
+  const T = _T(), tp = _TIPS[key];
+  if (!tp || T.seen[key] || !S.onboarded || _tour) return;
+  if (tp.need && !tp.need()) return;
+  setTimeout(() => {
+    if (_tour || T.seen[key]) return;
+    if (_cook) return;
+    const ob = document.getElementById('ob-overlay'); if (ob && !ob.hidden) return;
+    const sheetOpen = document.getElementById('overlay')?.classList.contains('open');
+    const inSheet = key === 'detail' || key === 'pantry';
+    if (sheetOpen !== inSheet) return;
+    if (key === 'detail' && sheetMode !== 'detail') return;
+    if (key === 'pantry' && sheetMode !== 'pantry') return;
+    if (!_tourVisible(tp.sel)) return;
+    _tour = { steps: [{ ...tp, wait: 600 }], i: 0, tip: true, tipKey: key };
+    _tourShow();
+  }, delay || 450);
+}
+function _tipAfterNav(screen) { if (_TIPS[screen]) _tip(screen); }
+function _tipCheckPlan() {
+  if (!S.onboarded || _tour) return;
+  const T = _T(); if (T.offer && !T.done) return;   // erst nach Tour-Angebot
+  if (S.planView === 'heute' && _tourVisible('[data-tour="cook"]')) _tip('cook', 700);
+  else if (S.planView === 'woche') _tip('closeweek', 700);
+}
+
+// ── Gesten: nach zweimal ✕ den Wisch-Hinweis zeigen ──
+document.addEventListener('click', e => {
+  if (!e.isTrusted || !e.target.closest || !e.target.closest('#sheet .sheet-close')) return;
+  const coarse = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+  const T = _T(); if (!coarse || T.seen.swipe) return;
+  T.xc = (T.xc || 0) + 1;
+  if (T.xc >= 2) { T.seen.swipe = 1; setTimeout(_swipeHint, 350); }
+  save();
+}, true);
+function _swipeHint() {
+  let h = document.getElementById('swipe-hint');
+  if (!h) { h = document.createElement('div'); h.id = 'swipe-hint'; h.className = 'swipe-hint'; h.setAttribute('role', 'status'); document.body.appendChild(h); }
+  h.innerHTML = `<span class="sw-hand" aria-hidden="true">👆</span><span><b>Tipp:</b> Fenster kannst du auch einfach am Griff <b>nach unten wischen</b>.</span>`;
+  h.classList.add('show');
+  setTimeout(() => h.classList.remove('show'), 5200);
+}
+
+// ── Bestehende Nutzer: Tour einmal anbieten ──
+function _tourCardHtml() {
+  const T = _T();
+  if (!T.offer || T.done || !S.onboarded) return '';
+  return `<div class="tour-card"><div><b>Neu: kurze Tour</b><span>In 60 Sekunden alle wichtigen Funktionen.</span></div>
+    <div class="tc-row"><button onclick="startTour()">Tour starten</button><button class="tc-ghost" onclick="_T().offer=false;save();renderPlan()">Nein danke</button></div></div>`;
+}
+function resetTips() {
+  const T = _T(); T.seen = {}; T.xc = 0; save();
+  toast('💡 Tipps werden wieder angezeigt');
+}
+
+// ══════════════════════════════════════════
 // TOAST
 // ══════════════════════════════════════════
 let _tt;
@@ -7704,6 +8477,7 @@ function toast(msg) {
 // ══════════════════════════════════════════
 document.documentElement.lang = 'de';
 load();
+try { _applyAllEdits(); } catch(e) { console.error(e); }
 try { _applyBio(); } catch(e) {}
 try { _reallocatePantry(); } catch(e) {}   // Vorräte sofort dem aktuellen Plan zuordnen
 _syncScreens();
@@ -7712,6 +8486,7 @@ renderRecipes();
 if (!S.onboarded) {
   showOnboarding();
 } else {
+  if (!S.tour) { _T(); save(); }
   renderPlan();
 }
 </script>
