@@ -935,6 +935,17 @@ s.ed-rm { color: var(--text-2); text-decoration-color: #B3412E; }
 .ed-bn-row button { border: none; border-radius: 9px; padding: 6px 11px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; background: var(--green); color: #fff; }
 .ed-bn-row button.ed-ghost { background: transparent; color: var(--text-2); border: 1.5px solid #E5C98F; }
 .mt.mine { background: #FFF0C7; color: #7A5A12; }
+
+/* ── Eigene Artikel ── */
+.xi-add { display: flex; gap: 8px; margin-bottom: 6px; }
+.xi-input { flex: 1; min-width: 0; padding: 11px 14px; border-radius: 14px; border: 1.5px solid var(--border); background: var(--surface); font-family: inherit; font-size: 15px; color: var(--text); outline: none; }
+.xi-input:focus { border-color: var(--green); }
+.xi-btn { flex: 0 0 44px; height: 44px; border-radius: 14px; border: none; background: var(--green); color: #fff; font-size: 24px; font-weight: 400; line-height: 1; cursor: pointer; }
+.xi-sugg { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.xi-sugg:empty { display: none; }
+.xi-chip { border: 1.5px solid var(--border); background: var(--surface); color: var(--text); border-radius: 999px; padding: 6px 11px; font-family: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+.xi-chip small { color: var(--green); font-weight: 700; margin-left: 4px; }
+.xi-del { flex-shrink: 0; width: 30px; height: 30px; margin: -4px -4px -4px 2px; border: none; background: none; color: var(--text-2); font-size: 14px; cursor: pointer; border-radius: 50%; }
 /* ── Feedback ── */
 .fb-lead { font-size: 13.5px; color: var(--text-2); line-height: 1.55; margin: 4px 0 12px; }
 .fb-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
@@ -3060,6 +3071,7 @@ function _mergeState(p) {
         bioMeat: !!p.bioMeat,
         a2hsDone: !!p.a2hsDone,
         tour: (p.tour && typeof p.tour === 'object') ? p.tour : null,
+        extraItems: Array.isArray(p.extraItems) ? p.extraItems.filter(x => x && typeof x.name === 'string').map(x => ({ id: String(x.id || 'x' + Math.random().toString(36).slice(2, 8)), name: x.name.slice(0, 80), qty: Math.max(1, Math.min(99, parseInt(x.qty) || 1)), pid: x.pid && P[x.pid] ? x.pid : null, done: !!x.done })) : [],
         sparRecent: Array.isArray(p.sparRecent) ? p.sparRecent.filter(x => Array.isArray(x) && typeof x[0] === 'string').slice(-160) : [],
         edits: (p.edits && typeof p.edits === 'object') ? Object.fromEntries(Object.entries(p.edits).filter(([k, v]) => v && Array.isArray(v.rows) && BUILTIN.some(b => b.id === k))) : {},
         allergies: Array.isArray(p.allergies) ? p.allergies.filter(k => typeof k === 'string') : [],
@@ -5120,14 +5132,99 @@ function _renderPrices() {
 // ══════════════════════════════════════════
 // RENDER: EINKAUFSLISTE
 // ══════════════════════════════════════════
+// ══════════════════════════════════════════
+// EIGENE ARTIKEL auf der Einkaufsliste (Spülmittel, Brot, Milch …)
+// S.extraItems: [{ id, name, qty, pid?, done }]
+// ══════════════════════════════════════════
+function _xiParse(txt) {
+  let t = String(txt || '').trim().replace(/\s+/g, ' '), qty = 1;
+  const m = t.match(/^(\d{1,2})\s*(x|×|stk\.?|stück)?\s+(.+)$/i) || t.match(/^(.+?)\s*(?:x|×)\s*(\d{1,2})$/i);
+  if (m) { if (/^\d/.test(m[1])) { qty = +m[1]; t = m[3]; } else { qty = +m[2]; t = m[1]; } }
+  return { name: t.charAt(0).toUpperCase() + t.slice(1), qty: Math.max(1, Math.min(99, qty)) };
+}
+function addExtraItem(txt, pid) {
+  const p = _xiParse(txt || (pid && P[pid] ? stripIngQty(P[pid].n) : ''));
+  if (!p.name) { toast('Was soll auf die Liste?'); return; }
+  S.extraItems = S.extraItems || [];
+  const same = S.extraItems.find(x => !x.done && (pid ? x.pid === pid : x.name.toLowerCase() === p.name.toLowerCase()));
+  if (same) same.qty += p.qty;
+  else S.extraItems.unshift({ id: 'x' + Date.now().toString(36), name: pid ? stripIngQty(P[pid].n) : p.name, qty: p.qty, pid: pid || null, done: false });
+  save(); renderList();
+  setTimeout(() => { const i = document.getElementById('xi-input'); if (i) i.focus({ preventScroll: true }); }, 30);
+}
+function toggleExtraItem(id) { const x = (S.extraItems || []).find(x => x.id === id); if (x) { x.done = !x.done; save(); renderList(); } }
+function removeExtraItem(id) { S.extraItems = (S.extraItems || []).filter(x => x.id !== id); save(); renderList(); }
+function _xiPrice(x, store) {
+  if (!x.pid || !P[x.pid]) return null;
+  const s = store || cheapestFor(x.pid);
+  return { price: P[x.pid][s] * x.qty, store: s };
+}
+// Deutsche Wortzusammensetzungen: „Vollmilch“ ist Milch, „Milchreis“ ist Reis → Wortende zählt mehr als Wortanfang
+function _xiRank(id, q) {
+  const w = stripIngQty(P[id].n).toLowerCase().split(/[\s\-\/()]+/);
+  if (w.includes(q)) return 0;
+  if (w.some(x => x.endsWith(q))) return 1;
+  if (w.some(x => x.startsWith(q))) return 2;
+  return 3;
+}
+function _xiSuggest(q) {
+  const el = document.getElementById('xi-sugg'); if (!el) return;
+  q = (q || '').trim().toLowerCase().replace(/^\d+\s*(x|×)?\s*/, '');
+  if (q.length < 2) { el.innerHTML = ''; return; }
+  const syn = (typeof _SYN !== 'undefined' && (_SYN[q] || _SYN[q.replace(/n$/, '')])) || [];
+  const hits = Object.keys(P).filter(id => stripIngQty(P[id].n).toLowerCase().includes(q) || syn.includes(id))
+    .sort((a, b) => _xiRank(a, q) - _xiRank(b, q) || stripIngQty(P[a].n).length - stripIngQty(P[b].n).length)
+    .slice(0, 4);
+  el.innerHTML = hits.map(id => `<button class="xi-chip" onclick="_xiPick('${id}')">${_esc(P[id].n)} <small>${fmt(P[id][cheapestFor(id)])}</small></button>`).join('');
+}
+function _xiPick(id) {
+  const i = document.getElementById('xi-input'), m = i && i.value.match(/^\s*(\d{1,2})/);
+  if (i) i.value = '';
+  const el = document.getElementById('xi-sugg'); if (el) el.innerHTML = '';
+  addExtraItem(m ? m[1] + ' ' + stripIngQty(P[id].n) : '', id);
+}
+function _xiSubmit(ev) {
+  if (ev) ev.preventDefault();
+  const i = document.getElementById('xi-input'); if (!i) return false;
+  const v = i.value; i.value = '';
+  const el = document.getElementById('xi-sugg'); if (el) el.innerHTML = '';
+  addExtraItem(v, null);
+  return false;
+}
+function _extraItemsHtml(singleStore) {
+  const xs = S.extraItems || [];
+  let h = `<form class="xi-add" onsubmit="return _xiSubmit(event)">
+      <input id="xi-input" class="xi-input" type="text" enterkeyhint="done" autocomplete="off" placeholder="Artikel hinzufügen, z. B. Spülmittel" oninput="_xiSuggest(this.value)" aria-label="Eigenen Artikel hinzufügen">
+      <button type="submit" class="xi-btn" aria-label="Hinzufügen">+</button>
+    </form><div id="xi-sugg" class="xi-sugg"></div>`;
+  if (!xs.length) return h;
+  let sum = 0, known = 0;
+  xs.forEach(x => { const p = _xiPrice(x, singleStore); if (p && !x.done) { sum += p.price; known++; } });
+  h += `<div class="store-group"><div class="sg-header"><span class="sg-pill" style="background:#FFF0C7;color:#7A5A12">Eigene Artikel</span>
+      <span class="sg-total">${known ? 'ca. ' + fmt(sum) : xs.filter(x => !x.done).length + ' offen'}</span></div>`;
+  [...xs.filter(x => !x.done), ...xs.filter(x => x.done)].forEach(x => {
+    const p = _xiPrice(x, singleStore);
+    h += `<div class="l-item" role="checkbox" aria-checked="${x.done}" onclick="toggleExtraItem('${x.id}')">
+        <div class="li-chk ${x.done ? 'done' : ''}">${x.done ? '✓' : ''}</div>
+        <div style="flex:1;min-width:0">
+          <div class="li-name ${x.done ? 'done' : ''}">${_esc(x.name)}${x.qty > 1 ? ` <span style="font-size:10px;color:var(--text-2)">×${x.qty}</span>` : ''}</div>
+          ${p ? `<div style="font-size:10px;color:var(--text-2);margin-top:1px">${_esc(P[x.pid].n)} · ${SN[p.store]}</div>` : ''}
+        </div>
+        ${p ? `<span class="li-price">${fmt(p.price)}</span>` : ''}
+        <button class="xi-del" onclick="event.stopPropagation();removeExtraItem('${x.id}')" aria-label="${_esc(x.name)} entfernen">✕</button>
+      </div>`;
+  });
+  return h + '</div>';
+}
+
 function renderList() { _safeRender(_renderList, 'list-body'); }
 function _renderList() {
   const ings = weekIngredients(), meals = mealCount();
   const coveredIds = Object.keys(S.pantryUsed || {}).filter(id => P[id] && S.pantryUsed[id] > 0);
   const stapleIds = Object.keys(weekNeedRaw()).filter(id => isStaple(id));
   if (!ings.length && !meals) {
-    document.getElementById('list-body').innerHTML =
-      _emptyPlanHtml('Die Einkaufsliste entsteht automatisch aus deinem Wochenplan – mit allen Zutaten, Mengen und Preisen.'); return;
+    document.getElementById('list-body').innerHTML = _extraItemsHtml(null) +
+      _emptyPlanHtml('Die Einkaufsliste entsteht automatisch aus deinem Wochenplan – mit allen Zutaten, Mengen und Preisen. Eigene Artikel kannst du oben jederzeit ergänzen.'); return;
   }
   const single = S.shopMode !== 'split';
   const singleStore = single ? bestSingleStore() : null;
@@ -5147,7 +5244,7 @@ function _renderList() {
     <div style="display:flex;gap:6px;margin-bottom:14px">
       <button class="f-chip ${single?'active':''}" style="flex:1 1 0;min-width:0;padding-left:6px;padding-right:6px;font-weight:500" aria-pressed="${single}" onclick="setShopMode('single')">🏪 Alles in einem Laden</button>
       <button class="f-chip ${!single?'active':''}" style="flex:1 1 0;min-width:0;padding-left:6px;padding-right:6px;font-weight:500" aria-pressed="${!single}" onclick="setShopMode('split')">💸 Günstigste Aufteilung</button>
-    </div>`;
+    </div>` + _extraItemsHtml(singleStore);
   STORES.forEach(store => {
     const items = groups[store]; if (!items.length) return;
     const tot = items.reduce((s,id) => s + pkgsNeeded(id, ingTotals[id]) * P[id][store], 0);
@@ -7291,9 +7388,11 @@ function updatePlz(val) {
 
 function toggle(id) { S.checked[id]=!S.checked[id]; save(); renderList(); }
 function clearDone() {
-  const n = Object.keys(S.checked).filter(k=>S.checked[k]).length;
+  const nx = (S.extraItems || []).filter(x => x.done).length;
+  const n = Object.keys(S.checked).filter(k=>S.checked[k]).length + nx;
   if (!n) { toast('Nichts zum Löschen'); return; }
   Object.keys(S.checked).forEach(k => { if (S.checked[k]) delete S.checked[k]; });
+  S.extraItems = (S.extraItems || []).filter(x => !x.done);
   save(); renderList(); toast(`${n} erledigt entfernt`);
 }
 function editBudget() { goSettings(); }
@@ -7653,7 +7752,7 @@ function renderSettings() {
         </div>
       </div>
     </div>
-    <div class="set-version">provit · Version 71 · Preise Stand ${PRICE_STAND}<br><span style="font-size:10px">Ortsnamen: GeoNames (CC BY 4.0)</span>${PROVIT_STANDALONE ? `<div class="set-legal"><a href="info.html">Über Provit</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>` : ''}</div>`;
+    <div class="set-version">provit · Version 72 · Preise Stand ${PRICE_STAND}<br><span style="font-size:10px">Ortsnamen: GeoNames (CC BY 4.0)</span>${PROVIT_STANDALONE ? `<div class="set-legal"><a href="info.html">Über Provit</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>` : ''}</div>`;
   document.getElementById('settings-body').innerHTML = h;
 }
 
@@ -8204,7 +8303,7 @@ function restoreRecipe(rid) {
 // ══════════════════════════════════════════
 // FEEDBACK per E-Mail (nur in den Einstellungen)
 // ══════════════════════════════════════════
-const PROVIT_VERSION = 71;
+const PROVIT_VERSION = 72;
 const FEEDBACK_MAIL = 'fxnn.koch@gmail.com';
 const _FB_CATS = ['Fehler', 'Idee', 'Rezept', 'Preise', 'Sonstiges'];
 let _fbCat = 'Fehler', _fbText = '';
@@ -8306,7 +8405,7 @@ const _TIPS = {
   prices: { sel: '#prices-body > *', need: () => mealCount() > 0, title: 'Preisvergleich',
     text: 'So viel kostet dein Wocheneinkauf in jedem Supermarkt. Provit zeigt auch, ob sich das Aufteilen auf zwei Läden lohnt.' },
   list: { sel: '#sc-list .pt-headbtn', need: () => mealCount() > 0, title: 'Einkaufsliste',
-    text: 'Beim Einkaufen einfach abhaken. Über den <b>Korb</b> trägst du ein, was du schon zu Hause hast – das wird eingeplant und fällt von der Liste.' },
+    text: 'Beim Einkaufen einfach abhaken. Oben ergänzt du <b>eigene Artikel</b> wie Spülmittel oder Brot. Über den <b>Korb</b> trägst du ein, was du schon zu Hause hast.' },
   settings: { sel: '[data-tour="backup"]', scroll: true, title: 'Wichtig: Daten sichern',
     text: 'Deine Daten liegen nur auf diesem Handy. Mit dem <b>Sicherungscode</b> nimmst du Plan, Vorräte und Rezepte auf ein neues Gerät mit.' },
   detail: { sel: '#sheet .tab-bar', title: 'Das Rezept',
